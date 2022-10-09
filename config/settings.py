@@ -133,6 +133,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+AUTH_USER_MODEL = 'core.CustomUser'
 
 django_on_heroku.settings(locals())
 del DATABASES['default']['OPTIONS']['sslmode']
