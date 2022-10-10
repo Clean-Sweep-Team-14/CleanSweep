@@ -12,6 +12,7 @@ django-on-heroku = "*"
 django-environ = "*"
 pillow = "*"
 djangorestframework = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 autopep8 = "*"
