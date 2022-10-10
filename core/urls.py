@@ -1,4 +1,7 @@
 from django.urls import path, include
+from core import views
 urlpatterns = [
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('', views.api_root),
+    path('api-auth/', include('rest_framework.urls',)),
+    path('chores/', views.ChoreList.as_view(), name='chore-list')
 ]
