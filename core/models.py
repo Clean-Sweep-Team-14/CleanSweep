@@ -41,7 +41,7 @@ class Chore_Tracker(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name = 'choretrackers')
 
     def __str__(self):
-        return f'{self.chore} on {self.date}'
+        return f'{self.chore} on {self.day}'
 
 
 class Follow(models.Model):
