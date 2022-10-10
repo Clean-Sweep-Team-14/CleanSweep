@@ -7,4 +7,4 @@ class ChoreSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Chore
-        fields = ('chore', 'point')
+        fields = ('chore', 'point', 'pk')
