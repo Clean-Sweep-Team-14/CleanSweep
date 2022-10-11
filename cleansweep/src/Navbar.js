@@ -1,6 +1,7 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import NavLink from 'react-bootstrap/esm/NavLink';
 
 function NavigationBar() {
     return (
@@ -14,7 +15,7 @@ function NavigationBar() {
                 <Nav.Link href="myprofile">My Profile</Nav.Link>
                 <Nav.Link href="friends">Friends</Nav.Link>
                 <Nav.Link href="leaderboards">Leaderboards</Nav.Link>
-                <Nav.Link className='justify-content-end' href="#logout">Logout</Nav.Link>
+                <Nav.Link href="#logout">Logout</Nav.Link>
             </Nav>
             </Container>
         </Navbar>
