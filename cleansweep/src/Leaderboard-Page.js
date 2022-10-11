@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 function LeaderboardTitles() {
     return (
         <Container>
-        <Row>
+        <Row className='my-5 py-4'>
             <Col sm={4}>Global</Col>
             <Col sm={4}>Monthly</Col>
             <Col sm={4}>Household</Col>
