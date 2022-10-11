@@ -1,14 +1,17 @@
-import logo from './logo.svg';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import NavBar from 'react-bootstrap/Navbar'
+import LeaderboardTitles from './Leaderboard-Page';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-      <h1>test</h1>
-      </header>
-    </div>
-  );
+<div>
+    <main>
+
+    <LeaderboardTitles></LeaderboardTitles>
+    </main>
+</div>
+    );
 }
 
 export default App;
