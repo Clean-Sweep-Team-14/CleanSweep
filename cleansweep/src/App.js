@@ -7,7 +7,7 @@ function App() {
   return (
 <div>
     <main>
-    <NavBar></NavBar>
+
     <LeaderboardTitles></LeaderboardTitles>
     </main>
 </div>
