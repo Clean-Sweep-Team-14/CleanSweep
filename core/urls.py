@@ -18,4 +18,9 @@ urlpatterns = [
 
 #Points
     path('user/points/', views.PointsList.as_view(), name='user-points'),
+
+
+#Friends
+    path('friends/', views.FollowList.as_view(), name='following_list'),
+    path('friends/<int:pk>/', views.FollowDetail.as_view(), name='follow_detail'),
 ]

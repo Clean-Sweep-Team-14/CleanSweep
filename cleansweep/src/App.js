@@ -1,15 +1,19 @@
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import NavBar from 'react-bootstrap/Navbar'
+import LeaderboardTitles from './Leaderboard-Page';
 import { GetChores } from './chores-page'
 
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-      <p>test</p>
-      </header>
-    </div>
-  );
+<div>
+    <main>
+
+    <LeaderboardTitles></LeaderboardTitles>
+    </main>
+</div>
+    );
 }
 
 
