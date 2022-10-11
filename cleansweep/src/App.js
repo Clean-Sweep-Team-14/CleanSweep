@@ -1,14 +1,17 @@
-import logo from './logo.svg';
 import './App.css';
+import { GetChores } from './chores-page'
+
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-      <h1>test</h1>
+      <p>test</p>
       </header>
     </div>
   );
 }
+
+
 
 export default App;
