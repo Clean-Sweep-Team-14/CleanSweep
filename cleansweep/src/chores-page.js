@@ -1,42 +1,58 @@
-import useState from "react"
-import axios from 'axios'
-import { Link } from 'react-router-dom'
-export default 'chores-page'
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Card from "react-bootstrap/Card";
+import Stack from 'react-bootstrap/Stack'
 
-const getChores = ({token, isLoggedIn}) => {
-  const [chores, setChores] = useState('')
-  
-  useState(() => {
-    axios
-    .get('https://clean-sweep-team-14.herokuapp.com/chores/')
-    .then((res) => 
-      setChores(res.data))    
-  }, [])
-  
-  
-  if (chores){
-    return (
-      <>
-            <div>
-                <div>
-                    <h1 style={{color:'light blue', textAlign:'center',  }}>🧹 Select Your Household Chores ! 🪠</h1>
-                </div>
-                <div>
-                    <getChores token={token}/>
-                </div>
 
-            <div className="usersChores" style={{width: '70%', margin: 'auto', marginTop:'30px', padding:'20px', alignContent: 'center', height: '500px', overflow:'scroll', marginBottom:'50px'}}>
-            {chores.map((choreList) => (
-              <div style={{borderTop: 'dashed', borderBottom:'dashed', borderRight:'solid', borderLeft:'solid', borderColor:'green', textAlign:'center'}}>
-                    <Link
-                        to={`/chores/${choreList.pk}`}
-                        key={choreList.pk}
-                        style={{textDecoration:'none'}}>
-                    <h1 style={{color:'light blue'}}>{choreList.chore_chores}</h1></Link>
-                    <p>{choreList.chores}</p>
-                    <p className='showUser' style={{ fontSize:'.5em' }}>By: <strong>{choreList.user}</strong></p>
-                </div>))}
-            </div>
-            </div>
-        </>)}
-}
+const ChoresLists = () => (
+    
+<Container>
+        <Card.Title className='text-center py-3'> 🧹 Select Your Household Chores ! 🪠 </Card.Title>
+        <Row>
+        <Stack className='text-center py-3 col-3'>
+            <div className="border">Easy Chores - 5 pts</div>
+            <div className="bg-white my-2">1. name placeholder</div>
+            <div className="bg-white my-2">2. name placeholder</div>
+            <div className="bg-white my-2">3. name placeholder</div>
+            <div className="bg-white my-2">4. name placeholder</div>
+            <div className="bg-white my-2">5. name placeholder</div>
+        </Stack>
+
+        <Stack className='text-center py-3 col-3'>
+            <div className="border">Medium Chores - 25 pts</div>
+            <div className="bg-white my-2">1. name placeholder</div>
+            <div className="bg-white my-2">2. name placeholder</div>
+            <div className="bg-white my-2">3. name placeholder</div>
+            <div className="bg-white my-2">4. name placeholder</div>
+            <div className="bg-white my-2">5. name placeholder</div>
+        </Stack>
+
+        <Stack className='text-center py-3 my- col-3'>
+        <div className="border">Hard Chores - 100 pts</div>
+            <div className="bg-white my-2">1. name placeholder</div>
+            <div className="bg-white my-2">2. name placeholder</div>
+            <div className="bg-white my-2">3. name placeholder</div>
+            <div className="bg-white my-2">4. name placeholder</div>
+            <div className="bg-white my-2">5. name placeholder</div>
+        </Stack>
+
+    </Row>
+        {/* <Row>
+<Col>
+        <Stack className='text-center py-3 my-5 col-4'>
+        <div className="border">All Chores</div>
+            <div className="bg-white my-2">1. name placeholder</div>
+            <div className="bg-white my-2">2. name placeholder</div>
+            <div className="bg-white my-2">3. name placeholder</div>
+            <div className="bg-white my-2">4. name placeholder</div>
+            <div className="bg-white my-2">5. name placeholder</div>
+        </Stack>
+</Col>   
+        </Row> */}
+
+</Container>
+
+);
+
+export default ChoresLists;
