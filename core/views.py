@@ -65,7 +65,6 @@ class GlobalLeaderboard(generics.ListAPIView):
     queryset = CustomUser.objects.all()
     serializer_class = UserPointsSerializer
 
-    
 
 class FollowList(generics.ListCreateAPIView):
     queryset = Follow.objects.all()

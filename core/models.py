@@ -9,7 +9,8 @@ class CustomUser(AbstractUser):
     
     avatar_picture = models.ImageField(upload_to = 'users', blank=True, null=True)
 
-    def totalpoints(self):
+    @property
+    def total_points(self):
         return self.choretrackers.filter(complete=True).aggregate(Sum('chore__point'))
 
     pass

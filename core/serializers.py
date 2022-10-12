@@ -29,4 +29,4 @@ class UserPointsSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = CustomUser
-        fields = ('pk', 'username', 'totalpoints')
+        fields = ('pk', 'username', 'total_points')
