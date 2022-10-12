@@ -23,4 +23,7 @@ urlpatterns = [
 #Friends
     path('friends/', views.FollowList.as_view(), name='following_list'),
     path('friends/<int:pk>/', views.FollowDetail.as_view(), name='follow_detail'),
+
+#Leaderboards
+    path('leaderboard/global/', views.GlobalLeaderboard.as_view(), name='gobal-leaderboard'),
 ]
