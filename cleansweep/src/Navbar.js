@@ -15,7 +15,7 @@ function NavigationBar() {
                 <Nav.Link href="myprofile">My Profile</Nav.Link>
                 <Nav.Link href="friends">Friends</Nav.Link>
                 <Nav.Link href="leaderboards">Leaderboards</Nav.Link>
-                <Nav.Link href="#logout">Logout</Nav.Link>
+                <Nav.Link className='text-end' href="#logout">Logout</Nav.Link>
             </Nav>
             </Container>
         </Navbar>
