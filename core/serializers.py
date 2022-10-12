@@ -1,6 +1,6 @@
 from dataclasses import fields
 from rest_framework import serializers
-from .models import Chore, Chore_Tracker
+from .models import Chore, Chore_Tracker, Follow
 from django.db.models import Sum
 
 class ChoreSerializer(serializers.ModelSerializer):
@@ -16,3 +16,10 @@ class ChoreTrackerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Chore_Tracker
         fields = ('chore', 'day', 'complete', 'user', 'pk')
+
+
+class FollowSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Follow
+        fields = ('pk', 'friend')

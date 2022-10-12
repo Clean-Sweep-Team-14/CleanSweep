@@ -3,8 +3,8 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
 from rest_framework import generics
-from .models import Chore, Chore_Tracker
-from .serializers import ChoreSerializer, ChoreTrackerSerializer
+from .models import Chore, Chore_Tracker, Follow
+from .serializers import ChoreSerializer, ChoreTrackerSerializer, FollowSerializer
 from django.db.models import Sum
 from rest_framework.views import APIView
 
@@ -59,6 +59,24 @@ class PointsList(APIView):
         query_results = request.user.choretrackers.filter(complete=True).aggregate(Sum('chore__point'))
 
         return Response(query_results)
+
+class FollowList(generics.ListCreateAPIView):
+    queryset = Follow.objects.all()
+    serializer_class = FollowSerializer
+
+    def get_queryset(self):
+        queryset = Follow.objects.filter(follower=self.request.user.pk)
+        return queryset
+
+    def perform_create(self, serializer):
+        serializer.save(follower=self.request.user)
+
+
+class FollowDetail(generics.RetrieveDestroyAPIView):
+    queryset = Follow.objects.all()
+    serializer_class = FollowSerializer  
+
+
 
 @api_view(['GET'])
 def api_root(request, format=None):
