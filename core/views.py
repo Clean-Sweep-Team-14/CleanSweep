@@ -5,7 +5,7 @@ from rest_framework.reverse import reverse
 from rest_framework import generics
 from .models import Chore, Chore_Tracker, CustomUser, Follow
 from .serializers import ChoreSerializer, ChoreTrackerSerializer, FollowSerializer, UserPointsSerializer
-from django.db.models import Sum
+from django.db.models import Sum, Q
 from rest_framework.views import APIView
 
 # Create your views here.
@@ -64,6 +64,16 @@ class PointsList(APIView):
 class GlobalLeaderboard(generics.ListAPIView):
     queryset = CustomUser.objects.all()
     serializer_class = UserPointsSerializer
+
+
+class FriendsLeaderboard(generics.ListAPIView):
+    queryset = CustomUser.objects.all()
+    serializer_class = UserPointsSerializer
+
+    def get_queryset(self):
+        queryset = CustomUser.objects.filter(Q(friends__in=self.request.user.friends)|Q(user=self.request.user))
+        return queryset
+
 
 
 class FollowList(generics.ListCreateAPIView):

@@ -26,4 +26,5 @@ urlpatterns = [
 
 #Leaderboards
     path('leaderboard/global/', views.GlobalLeaderboard.as_view(), name='gobal-leaderboard'),
+    path('leaderboard/friends/', views.FriendsLeaderboard.as_view(), name='friends-leaderboard'),
 ]
