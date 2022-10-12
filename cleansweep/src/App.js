@@ -1,19 +1,22 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import NavBar from 'react-bootstrap/Navbar'
-import LeaderboardTitles from './Leaderboard-Page';
-import NavigationBar from './Navbar';
-import ChoresLists from './chores-page';
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-function App() {
-  return (
-<div>
-    <main>
+import Leaderboards from "./Components/LeaderBoards";
+import Home from "./Components/Home";
+import Header from "./Components/Header";
 
-    </main>
-</div>
-    );
-}
+const App = () => (
+  <BrowserRouter>
+    <Header />
+    <Routes>
+      <Route path="/" exact element={<Home />} />
+      <Route path="/leaderboards" element={<Leaderboards />} />
+    </Routes>
+  </BrowserRouter>
+);
+
 
 
 
