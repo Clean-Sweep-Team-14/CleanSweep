@@ -629,3 +629,68 @@ Response Example (204 No Content)
 
 ```
 
+#### Show The Total Points Of A Logged In User - User Authentication **Required**
+
+```http
+GET - https://clean-sweep-team-14.herokuapp.com/user/points/
+```
+
+| Body       | Type     | Description               |
+| :--------- | :------- | :-------------------------|
+| `""`       | `""`     | ""                        |
+
+
+Request Sample:
+
+```
+GET /user/points/
+Content-Type: json
+Authorization: Required 
+Host: clean-sweep-team-14.herokuapp.com
+
+{
+	""
+}
+```
+
+Response Example (200 Ok)
+
+```
+{
+	"chore__point__sum": 10
+}
+
+```
+
+#### Show Friends Of A Logged In User - User Authentication **Required**
+
+```http
+GET - https://clean-sweep-team-14.herokuapp.com/friends/
+```
+
+| Body       | Type     | Description               |
+| :--------- | :------- | :-------------------------|
+| `""`       | `""`     | ""                        |
+
+
+Request Sample:
+
+```
+GET /friends/
+Content-Type: json
+Authorization: Required 
+Host: clean-sweep-team-14.herokuapp.com
+
+{
+	""
+}
+```
+
+Response Example ()
+
+```
+{
+	
+}
+
+```
