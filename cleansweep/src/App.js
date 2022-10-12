@@ -8,8 +8,7 @@ function App() {
   return (
 <div>
     <main>
-    <NavigationBar></NavigationBar>
-    <LeaderboardTitles></LeaderboardTitles>
+    
     </main>
 </div>
     );
