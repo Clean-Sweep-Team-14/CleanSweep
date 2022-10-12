@@ -1,5 +1,5 @@
 import axios from "axios"
-import { encodeUsername } from "./utils"
+import { encodeUsername } from "./Components/utils"
 
 const apiRoot = 'https://clean-sweep-team-14.herokuapp.com'
 
@@ -32,8 +32,8 @@ const logout = async (token) => {
     })
 }
 
-const getAllChores = async () => {
-    return axios.get(urls.listAllChores())
+const getAllChores = async (limit=20) => {
+    return axios.get(urls.listAllChores(), {limit:limit})
 }
 
 const getAllEasyChores = async () => {
@@ -48,10 +48,18 @@ const getAllHardChores = async () => {
     return axios.get(urls.listAllHardChores())
 }
 
+const getAllBonusChores = async () => {
+    return axios.get(urls.listAllBonusChores())
+}
+
 export {
     login,
     register,
     logout,
     urls,
     getAllChores,
+    getAllEasyChores,
+    getAllMediumChores,
+    getAllHardChores,
+    getAllBonusChores,
 }
