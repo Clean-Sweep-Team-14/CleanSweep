@@ -686,11 +686,122 @@ Host: clean-sweep-team-14.herokuapp.com
 }
 ```
 
-Response Example ()
+Response Example (200 Ok)
 
 ```
 {
-	
+	"count": 1,
+	"next": null,
+	"previous": null,
+	"results": [
+		{
+			"pk": 1,
+			"friend": 3
+		}
+	]
 }
 
+```
+
+#### Add A Friend For A Logged In User - User Authentication **Required**
+
+```http
+POST - https://clean-sweep-team-14.herokuapp.com/friends/
+```
+
+| Body       | Type     | Description                          |
+| :--------- | :------- | :------------------------------------|
+| `friend`   | `Int`    | "The User's PK being friended"       |
+
+
+Request Sample:
+
+```
+POST /friends/
+Content-Type: json
+Authorization: Required 
+Host: clean-sweep-team-14.herokuapp.com
+
+{
+	"friend": "3"
+}
+```
+
+Response Example (201 Created)
+
+```
+{
+	"pk": 1,
+	"friend": 3
+}
+```
+
+#### Show a Friend Relationship between Users - User Authentication **Required**
+
+```http
+GET - https://clean-sweep-team-14.herokuapp.com/friends/pk-of-relationship
+```
+
+| Body       | Type     | Description               |
+| :--------- | :------- | :-------------------------|
+| `""`       | `""`     | ""                        |
+
+
+Request Sample:
+
+```
+GET /friends/pk-of-relationship
+Content-Type: json
+Authorization: Required 
+Host: clean-sweep-team-14.herokuapp.com
+
+{
+	"""
+}
+```
+
+Response Example (201 Created)
+
+```
+{
+	"count": 1,
+	"next": null,
+	"previous": null,
+	"results": [
+		{
+			"pk": 1,
+			"friend": 3
+		}
+	]
+}
+```
+
+#### Delete a Friend Relationship between Users / Unfriending - User Authentication **Required**
+
+```http
+DELETE - https://clean-sweep-team-14.herokuapp.com/friends/pk-of-relationship
+```
+
+| Body       | Type     | Description               |
+| :--------- | :------- | :-------------------------|
+| `""`       | `""`     | ""                        |
+
+
+Request Sample:
+
+```
+DELETE /friends/pk-of-relationship
+Content-Type: json
+Authorization: Required 
+Host: clean-sweep-team-14.herokuapp.com
+
+{
+	"""
+}
+```
+
+Response Example (201 Created)
+
+```
+No body returned for response
 ```
