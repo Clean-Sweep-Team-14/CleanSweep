@@ -9,9 +9,7 @@ function App() {
   return (
 <div>
     <main>
-    <ChoresLists></ChoresLists>
-    <NavigationBar></NavigationBar>
-    <LeaderboardTitles></LeaderboardTitles>
+
     </main>
 </div>
     );
