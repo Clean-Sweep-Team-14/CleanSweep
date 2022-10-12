@@ -8,27 +8,6 @@ import Stack from 'react-bootstrap/Stack'
 import Button from 'react-bootstrap/Button'
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 
-<Container>
-        <Col>
-        <Stack className='text-center py-3 col-3'>
-            <div className="bg-white my-2"> Badges Obtained:</div>
-            <div className="bg-white my-2"> Member Since: </div>
-            <div className="bg-white my-2"> Favorite Chores: </div>
-            <div className="bg-white my-2"> Households: </div>
-        </Stack>
-        </Col>
-
-    <div>
-        <ButtonToolbar>
-          <Button bsStyle="primary" bsSize="large" active>
-          Add As Friend
-          </Button>
-          <Button bsStyle="secondary" bsSize="large">
-          Remove Friend
-          </Button>
-        </ButtonToolbar>
-    </div>
-</Container>
 
 export default function ProfileStats() {
   return (
@@ -79,6 +58,27 @@ export default function ProfileStats() {
           </MDBCol>
         </MDBRow>
       </MDBContainer>
+        <Container>
+                <Col>
+                <Stack className='text-center py-3 col-3'>
+                    <div className="bg-white my-2"> Badges Obtained:</div>
+                    <div className="bg-white my-2"> Member Since: </div>
+                    <div className="bg-white my-2"> Favorite Chores: </div>
+                    <div className="bg-white my-2"> Households: </div>
+                </Stack>
+                </Col>
+
+            <div>
+                <ButtonToolbar>
+                <Button bsStyle="primary" bsSize="large" active>
+                Add As Friend
+                </Button>
+                <Button bsStyle="secondary" bsSize="large">
+                Remove Friend
+                </Button>
+                </ButtonToolbar>
+            </div>
+        </Container>
     </div>
   );
 }
