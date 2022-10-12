@@ -3,6 +3,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Stack from 'react-bootstrap/Stack'
+import Button from 'react-bootstrap/Button'
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 
 
 const ChoresLists = () => (
@@ -36,8 +38,16 @@ const ChoresLists = () => (
             <div className="bg-white my-2">4. name placeholder</div>
             <div className="bg-white my-2">5. name placeholder</div>
         </Stack>
-
     </Row>
+      
+      <div>
+        <ButtonToolbar>
+          <Button bsStyle="primary" bsSize="large" active>
+          Block Level Button
+          </Button>
+        </ButtonToolbar>
+      </div>
+
         {/* <Row>
 <Col>
         <Stack className='text-center py-3 my-5 col-4'>
