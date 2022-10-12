@@ -1,5 +1,5 @@
 import axios from "axios"
-import { encodeUsername } from "./utils"
+import { encodeUsername } from "./Components/utils"
 
 const apiRoot = 'https://clean-sweep-team-14.herokuapp.com'
 
@@ -7,6 +7,11 @@ const urls = {
     login: () => `${apiRoot}/auth/token/login/`,
     register: () => `${apiRoot}/auth/users/`,
     logout: () => `${apiRoot}/auth/token/logout/`,
+    listAllChores: () => `${apiRoot}/chores/`,
+    listAllEasyChores: () => `${apiRoot}/chores/easy/`,
+    listAllMediumChores: () => `${apiRoot}/chores/medium/`,
+    listAllHardChores: () => `${apiRoot}/chores/hard/`,
+    listAllBonusChores: () => `${apiRoot}/chores/bonus/`,
 }
 
 const login = async (body) => {
@@ -27,10 +32,34 @@ const logout = async (token) => {
     })
 }
 
+const getAllChores = async (limit=20) => {
+    return axios.get(urls.listAllChores(), {limit:limit})
+}
+
+const getAllEasyChores = async (limit=100) => {
+    return axios.get(urls.listAllEasyChores(), {limit:limit})
+}
+
+const getAllMediumChores = async (limit=100) => {
+    return axios.get(urls.listAllMediumChores(), {limit:limit})
+}
+
+const getAllHardChores = async (limit=100) => {
+    return axios.get(urls.listAllHardChores(), {limit:limit})
+}
+
+const getAllBonusChores = async () => {
+    return axios.get(urls.listAllBonusChores())
+}
 
 export {
     login,
     register,
     logout,
     urls,
+    getAllChores,
+    getAllEasyChores,
+    getAllMediumChores,
+    getAllHardChores,
+    getAllBonusChores,
 }
