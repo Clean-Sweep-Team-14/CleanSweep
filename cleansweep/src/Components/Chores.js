@@ -7,16 +7,24 @@ import { useEffect, useState } from "react";
 
 export default function Chores() {
 const [allChoresData, setAllChoresData] = useState([])
+const [allEasyChoresData, setAllEasyChoresData] = useState([])
+const [allMediumChoresData, setAllMediumChoresData] = useState([])
+const [allHardChoresData, setAllHardChoresData] = useState([])
+const [allBonusChoresData, setAllBonusChoresData] = useState([])
         useEffect(() => {
         async function fetchData() {
             try {
-                const response = getAllChores()
-                setAllChoresData(response.results.map(
-                    
-                ))
+                let response = await getAllEasyChores()
+                setAllEasyChoresData(response.data.results)
+
+                response = await getAllMediumChores()
+                setAllMediumChoresData(response.data.results)
+
+                response = await getAllHardChores()
+                setAllHardChoresData(response.data.results)
             }
             catch(e) {
-                console.log("There was a problem.")
+                console.log("There was a problem."+e)
             }
             }
             fetchData()
@@ -26,15 +34,15 @@ const [allChoresData, setAllChoresData] = useState([])
         <Row>
             <LeaderBoardColumn
             title="Easy"
-            leaders={["name placeholder", "name placeholder", "name placeholder", "name placeholder"]}
+            leaders={allEasyChoresData.map((item) => item.chore)}
             />
             <LeaderBoardColumn
             title="Medium"
-            leaders={["name placeholder", "name placeholder", "name placeholder", "name placeholder"]}
+            leaders={allMediumChoresData.map((item) => item.chore)}
             />
             <LeaderBoardColumn
             title="Hard"
-            leaders={["name placeholder", "name placeholder", "name placeholder", "name placeholder"]}
+            leaders={allHardChoresData.map((item) => item.chore)}
             />
         </Row>
         </Page>

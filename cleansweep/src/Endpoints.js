@@ -36,16 +36,16 @@ const getAllChores = async (limit=20) => {
     return axios.get(urls.listAllChores(), {limit:limit})
 }
 
-const getAllEasyChores = async () => {
-    return axios.get(urls.listAllEasyChores())
+const getAllEasyChores = async (limit=100) => {
+    return axios.get(urls.listAllEasyChores(), {limit:limit})
 }
 
-const getAllMediumChores = async () => {
-    return axios.get(urls.listAllMediumChores())
+const getAllMediumChores = async (limit=100) => {
+    return axios.get(urls.listAllMediumChores(), {limit:limit})
 }
 
-const getAllHardChores = async () => {
-    return axios.get(urls.listAllHardChores())
+const getAllHardChores = async (limit=100) => {
+    return axios.get(urls.listAllHardChores(), {limit:limit})
 }
 
 const getAllBonusChores = async () => {
