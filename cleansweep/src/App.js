@@ -3,12 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import axios from 'axios'
-import ProfileStats from './profile-page'
-
-
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from 'axios'
 
 //components
 import Leaderboards from "./Components/LeaderBoards";
