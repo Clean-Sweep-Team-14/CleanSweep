@@ -7,6 +7,7 @@ const urls = {
     login: () => `${apiRoot}/auth/token/login/`,
     register: () => `${apiRoot}/auth/users/`,
     logout: () => `${apiRoot}/auth/token/logout/`,
+    getChores: () => `${apiRoot}/chores/`,
 }
 
 const login = async (body) => {
@@ -25,6 +26,11 @@ const logout = async (token) => {
             Authorization: `Token ${token}`,
         },
     })
+}
+
+const getChores = async () => {
+    const data = await axios.get(urls.getCards()).then(res => res.data)
+    return data.results
 }
 
 
