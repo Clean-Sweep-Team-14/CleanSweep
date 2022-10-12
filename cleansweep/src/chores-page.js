@@ -43,7 +43,10 @@ const ChoresLists = () => (
       <div>
         <ButtonToolbar>
           <Button bsStyle="primary" bsSize="large" active>
-          Block Level Button
+          Chores Queues/Calendar
+          </Button>
+          <Button bsStyle="primary" bsSize="small">
+          Notifications: 12 hours after scheduled chore completion. Points deduction after 24 hours.
           </Button>
         </ButtonToolbar>
       </div>
