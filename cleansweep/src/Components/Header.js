@@ -17,6 +17,9 @@ export default function Header(props) {
             <LinkContainer to="/leaderboards">
                 <Nav.Link>Leaderboards</Nav.Link>
             </LinkContainer>
+            <LinkContainer to="/Chores">
+                <Nav.Link>Chores</Nav.Link>
+            </LinkContainer>
             </Nav>
         </Container>
         </Navbar>

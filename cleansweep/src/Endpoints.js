@@ -7,6 +7,11 @@ const urls = {
     login: () => `${apiRoot}/auth/token/login/`,
     register: () => `${apiRoot}/auth/users/`,
     logout: () => `${apiRoot}/auth/token/logout/`,
+    listAllChores: () => `${apiRoot}/chores/`,
+    listAllEasyChores: () => `${apiRoot}/chores/easy/`,
+    listAllMediumChores: () => `${apiRoot}/chores/medium/`,
+    listAllHardChores: () => `${apiRoot}/chores/hard/`,
+    listAllBonusChores: () => `${apiRoot}/chores/bonus/`,
 }
 
 const login = async (body) => {
@@ -27,10 +32,26 @@ const logout = async (token) => {
     })
 }
 
+const getAllChores = async () => {
+    return axios.get(urls.listAllChores())
+}
+
+const getAllEasyChores = async () => {
+    return axios.get(urls.listAllEasyChores())
+}
+
+const getAllMediumChores = async () => {
+    return axios.get(urls.listAllMediumChores())
+}
+
+const getAllHardChores = async () => {
+    return axios.get(urls.listAllHardChores())
+}
 
 export {
     login,
     register,
     logout,
     urls,
+    getAllChores,
 }
