@@ -6,7 +6,7 @@ import Navbar from 'react-bootstrap/Navbar';
 function NavigationBar() {
     return (
         <>
-        <Navbar bg="dark" variant="dark">
+        <Navbar>
             <Container>
             <Navbar.Brand href="Home">CleanSweep</Navbar.Brand>
             <Nav className="me-auto">
