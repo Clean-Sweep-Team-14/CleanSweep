@@ -2,7 +2,7 @@ from email.policy import default
 from secrets import choice
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.db.models import Sum
+from django.db.models import Sum, Q
 from django.db.models.constraints import UniqueConstraint
 
 
@@ -57,10 +57,7 @@ class Follow(models.Model):
     friend = models.ForeignKey(CustomUser,on_delete=models.CASCADE, related_name = 'friends')
 
     class Meta:
-
-        constraints = [
-        UniqueConstraint(fields=['follow', 'friend'], name='unique_constraint')
-    ]
+        unique_together = ['follower', 'friend']
 
 
     def __str__(self):
