@@ -7,9 +7,9 @@ import { LinkContainer } from "react-router-bootstrap";
 
 export default function Header(props) {
     return (
-        <Navbar bg="dark" variant="dark">
+        <Navbar bg="primary" variant="primary">
         <Container>
-            <Navbar.Brand href="#home">CleanSweep</Navbar.Brand>
+            <Navbar.Brand href="#home"><strong>CleanSweep</strong></Navbar.Brand>
             <Nav className="me-auto">
             <LinkContainer to="/">
                 <Nav.Link>Home</Nav.Link>
