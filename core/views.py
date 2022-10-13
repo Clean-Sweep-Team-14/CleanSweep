@@ -75,7 +75,6 @@ class FriendsLeaderboard(generics.ListAPIView):
         return queryset
 
 
-
 class FollowList(generics.ListCreateAPIView):
     queryset = Follow.objects.all()
     serializer_class = FollowSerializer
