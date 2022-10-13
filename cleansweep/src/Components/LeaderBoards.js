@@ -13,10 +13,6 @@ export default function Leaderboards() {
             leaders={["name placeholder", "name placeholder", "name placeholder", "name placeholder"]}
             />
             <LeaderBoardColumn
-            title="Monthly"
-            leaders={["name placeholder", "name placeholder", "name placeholder", "name placeholder"]}
-            />
-            <LeaderBoardColumn
             title="Friends"
             leaders={["name placeholder", "name placeholder", "name placeholder", "name placeholder"]}
             />
