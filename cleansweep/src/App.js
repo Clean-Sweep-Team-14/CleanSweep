@@ -9,6 +9,7 @@ import Leaderboards from "./Components/LeaderBoards";
 import Home from "./Components/Home";
 import Header from "./Components/Header";
 import Chores from './Components/Chores';
+import Profile from './Components/profile-page';
 
 
 const App = () => (
