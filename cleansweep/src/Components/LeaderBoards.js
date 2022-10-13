@@ -2,6 +2,9 @@ import Row from "react-bootstrap/Row";
 
 import Page from "./Page";
 import LeaderBoardColumn from "./LeaderBoardColumn";
+import { useState } from "react";
+import { useEffect } from "react";
+import {listGlobalLeaderboard, listFriendLeaderboard} from "../Endpoints"
 
 export default function Leaderboards() {
     const [allGlobalLeadersData, setAllGlobalLeadersData] = useState([])
@@ -9,12 +12,11 @@ export default function Leaderboards() {
         useEffect(() => {
         async function fetchData() {
             try {
-                let response = await listGlobalLeaders()
+                let response = await listGlobalLeaderboard()
                 setAllGlobalLeadersData(response.data.results)
 
-                response = await listFriendLeaders()
+                response = await listFriendLeaderboard()
                 setAllFriendsLeadersData(response.data.results)
-
             }
             catch(e) {
                 console.log("There was a problem."+e)
@@ -29,11 +31,11 @@ export default function Leaderboards() {
         <Row>
             <LeaderBoardColumn
             title="Global"
-            leaders={["name placeholder", "name placeholder", "name placeholder", "name placeholder"]}
+            leaders={allGlobalLeadersData.map((item) => item.leader)}
             />
             <LeaderBoardColumn
             title="Friends"
-            leaders={["name placeholder", "name placeholder", "name placeholder", "name placeholder"]}
+            leaders={allFriendsLeadersData.map((item) => item.leader)}
             />
         </Row>
         </Page>
