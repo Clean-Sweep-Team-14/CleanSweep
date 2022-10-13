@@ -12,6 +12,8 @@ const urls = {
     listAllMediumChores: () => `${apiRoot}/chores/medium/`,
     listAllHardChores: () => `${apiRoot}/chores/hard/`,
     listAllBonusChores: () => `${apiRoot}/chores/bonus/`,
+    listGlobalLeaders: () => `${apiRoot}/leaderboard/global/`,
+    listFriendLeaders: () => `${apiRoot}/leaderboard/friends/`,
 }
 
 const login = async (body) => {
@@ -50,6 +52,14 @@ const getAllHardChores = async (limit=100) => {
 
 const getAllBonusChores = async () => {
     return axios.get(urls.listAllBonusChores())
+}
+
+const listGlobalLeaders = async (limit=20) => {
+    return axios.get(urls.listGlobalLeaders(), {limit:limit})
+}
+
+const listFriendLeaders = async (limit=20) => {
+    return axios.get(urls.listFriendLeaders(), {limit:limit})
 }
 
 export {
