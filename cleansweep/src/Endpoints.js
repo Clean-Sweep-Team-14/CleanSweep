@@ -54,11 +54,11 @@ const getAllBonusChores = async () => {
     return axios.get(urls.listAllBonusChores())
 }
 
-const listGlobalLeaderboard = async (limit=20) => {
+const getListGlobalLeaderboard = async (limit=20) => {
     return axios.get(urls.listGlobalLeaders(), {limit:limit})
 }
 
-const listFriendLeaderboard= async (limit=20) => {
+const getListFriendLeaderboard= async (limit=20) => {
     return axios.get(urls.listFriendLeaders(), {limit:limit})
 }
 
@@ -72,6 +72,6 @@ export {
     getAllMediumChores,
     getAllHardChores,
     getAllBonusChores,
-    listGlobalLeaderboard,
-    listFriendLeaderboard,
+    getListGlobalLeaderboard,
+    getListFriendLeaderboard,
 }
