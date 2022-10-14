@@ -2,6 +2,8 @@ from dataclasses import fields
 from rest_framework import serializers
 from .models import Chore, Chore_Tracker, CustomUser, Follow
 from django.db.models import Sum
+from django.db.models.constraints import UniqueConstraint
+
 
 class ChoreSerializer(serializers.ModelSerializer):
 
