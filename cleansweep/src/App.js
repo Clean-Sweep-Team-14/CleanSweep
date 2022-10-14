@@ -9,7 +9,7 @@ import Leaderboards from "./Components/LeaderBoards";
 import Home from "./Components/Home";
 import Header from "./Components/Header";
 import Chores from './Components/Chores';
-
+import ProfileStats from './Components/profile-page'; 
 
 
 const App = () => (
@@ -19,6 +19,7 @@ const App = () => (
       <Route path="/" exact element={<Home />} />
       <Route path="/leaderboards" element={<Leaderboards />} />
       <Route path="/chores" element={<Chores />} />
+      <Route path="/profile-page" element={<ProfileStats />} />
     </Routes>
   </BrowserRouter>
 );
