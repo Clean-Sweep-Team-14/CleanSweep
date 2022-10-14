@@ -20,6 +20,12 @@ export default function Header(props) {
             <LinkContainer to="/Chores">
                 <Nav.Link>Chores</Nav.Link>
             </LinkContainer>
+            <LinkContainer to="/profile-page">
+                <Nav.Link>My Profile</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/Friends">
+                <Nav.Link>Friends</Nav.Link>
+            </LinkContainer>
             </Nav>
         </Container>
         </Navbar>
