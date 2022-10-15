@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+
 import environ
 from pathlib import Path
 import django_on_heroku
@@ -157,7 +158,15 @@ REST_FRAMEWORK = {
     ]
 }
 
-
-CELERY_BROKER_URL = env('REDIS_URL')
-CELERY_ACCEPY_CONTENT = ['json']
+CELERY_BROKER_URL = "redis://localhost:6379"
+CELERY_RESULT_BACKEND = "redis://localhost:6379"
+CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
+
+
+EMAIL_HOST = env('EMAIL_HOST')
+EMAIL_PORT = env('EMAIL_PORT')
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASS')
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
