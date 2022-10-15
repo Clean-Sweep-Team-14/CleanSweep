@@ -20,6 +20,7 @@ const App = () => (
       <Route path="/leaderboards" element={<Leaderboards />} />
       <Route path="/chores" element={<Chores />} />
       <Route path="/profile-page" element={<ProfileStats />} />
+      <Route path="/chores/" element={<Chores />} />
     </Routes>
   </BrowserRouter>
 );
