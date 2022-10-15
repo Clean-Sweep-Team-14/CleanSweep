@@ -9,7 +9,7 @@ import Button from 'react-bootstrap/Button'
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 
 
-export default function ProfileStats() 
+export default function ProfileStats() {
   return (
     <div className="vh-100" style={{ backgroundColor: '#eee' }}>
       <MDBContainer className="container py-5 h-100">
@@ -80,5 +80,5 @@ export default function ProfileStats()
             </div>
         </Container>
     </div>
-  );
+);
 }

@@ -15,9 +15,8 @@ export default function Leaderboards() {
                 let response = await getListGlobalLeaderboard()
                 setAllGlobalLeadersData(response.data.results)
                 
-                // response = await getListFriendLeaderboard()
-                // setAllFriendsLeadersData(response.data.results)
-                // console.log(response)
+                response = await getListFriendLeaderboard()
+                setAllFriendsLeadersData(response.data.results)
             }
             catch(e) {
                 console.log("There was a problem."+e)
@@ -32,7 +31,7 @@ export default function Leaderboards() {
         <Row>
             <LeaderBoardColumn
             title="Global"
-            leaders={allGlobalLeadersData.map((item) => `${item.username} ${item.total_points ? item.total_points:'0'}`).sort((a, b) => (a.total_points > b.total_points) ? 1 : -1)}
+            leaders={allGlobalLeadersData.map((item) => `${item.username} ${item.total_points}`).sort((a, b) => (a.total_points > b.total_points) ? 1 : -1)}
             />
             <LeaderBoardColumn
             title="Friends"
