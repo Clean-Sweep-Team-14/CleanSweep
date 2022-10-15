@@ -1,4 +1,5 @@
 import Row from "react-bootstrap/Row";
+import Button from "react-bootstrap/Button"
 
 import Page from "./Page";
 import LeaderBoardColumn from "./LeaderBoardColumn";
@@ -48,15 +49,15 @@ const [allBonusChoresData, setAllBonusChoresData] = useState([])
         <Row>
             <LeaderBoardColumn
             title="Easy"
-            leaders={allEasyChoresData.map((item) => <a href=''onClick={(event) => submitChore(event, item.pk)}>{item.chore}</a>)}
+            leaders={allEasyChoresData.map((item) => <Button href=''onClick={(event) => submitChore(event, item.pk)}>{item.chore}</Button>)}
             />
             <LeaderBoardColumn
             title="Medium"
-            leaders={allMediumChoresData.map((item) => item.chore)}
+            leaders={allMediumChoresData.map((item) => <Button href=''onClick={(event) => submitChore(event, item.pk)}>{item.chore}</Button>)}
             />
             <LeaderBoardColumn
             title="Hard"
-            leaders={allHardChoresData.map((item) => item.chore)}
+            leaders={allHardChoresData.map((item) => <Button href=''onClick={(event) => submitChore(event, item.pk)}>{item.chore}</Button>)}
             />
         </Row>
         </Page>
