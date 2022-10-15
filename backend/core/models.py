@@ -7,13 +7,14 @@ from django.db.models.constraints import UniqueConstraint
 
 
 
+
 class CustomUser(AbstractUser):
     
     avatar_picture = models.ImageField(upload_to = 'users', blank=True, null=True)
 
     @property
     def total_points(self):
-        return self.choretrackers.filter(complete=True).aggregate(Sum('chore__point'))
+        return self.choretrackers.filter(complete=True).aggregate(Sum('chore__point', default=0))
 
     pass
 
