@@ -13,9 +13,9 @@ export default function Header(props) {
             <Nav className="me-auto">
             <LinkContainer to="/">
                 <Nav.Link>Home</Nav.Link>
-            </LinkContainer>
-            <LinkContainer to="/leaderboards">
-                <Nav.Link>Leaderboards</Nav.Link>
+                </LinkContainer>
+            <LinkContainer to="/Dashboard">
+                <Nav.Link>Dashboard</Nav.Link>
             </LinkContainer>
             <LinkContainer to="/Chores">
                 <Nav.Link>Chores</Nav.Link>
@@ -26,7 +26,12 @@ export default function Header(props) {
             <LinkContainer to="/Friends">
                 <Nav.Link>Friends</Nav.Link>
             </LinkContainer>
+            <LinkContainer to="/leaderboards">
+                <Nav.Link>Leaderboards</Nav.Link>
+            </LinkContainer>
             </Nav>
+            <button>Login/Register</button>
+            <button>Logout</button>
         </Container>
         </Navbar>
     );
