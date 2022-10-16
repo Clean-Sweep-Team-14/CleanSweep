@@ -4,8 +4,7 @@ import Navbar from "react-bootstrap/Navbar";
 
 export default function NavigationBar() {
     return (
-        <Navbar bg="dark" variant="dark">
-        <Container>
+        <Navbar>
             <Navbar.Brand href="#home">CleanSweep</Navbar.Brand>
             <Nav className="me-auto">
             <Nav.Link href="#home">Home</Nav.Link>
@@ -17,7 +16,6 @@ export default function NavigationBar() {
                 Logout
             </Nav.Link>
             </Nav>
-        </Container>
         </Navbar>
     );
 }
