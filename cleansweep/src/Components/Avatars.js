@@ -1,17 +1,30 @@
-image1.png
-image2.png
-image3.png
-image4.png
-image5.png
-image6.png
-image7.png
-image8.png
-image9.png
-image10.png
-image11.png
-image12.png
-image13.png
-image14.png
-image15.png
-image16.png
-image17.png
+import { Avatar } from '@chakra-ui/react'
+import { Wrap, WrapItem } from '@chakra-ui/react'
+
+export default function  avatarImgs () {
+return (
+    <Wrap>
+        <WrapItem>
+        <Avatar name='Dan Abrahmov' src='https://bit.ly/dan-abramov' />
+        </WrapItem>
+        <WrapItem>
+        <Avatar name='Kola Tioluwani' src='https://bit.ly/tioluwani-kolawole' />
+        </WrapItem>
+        <WrapItem>
+        <Avatar name='Kent Dodds' src='https://bit.ly/kent-c-dodds' />
+        </WrapItem>
+        <WrapItem>
+        <Avatar name='Ryan Florence' src='https://bit.ly/ryan-florence' />
+        </WrapItem>
+        <WrapItem>
+        <Avatar name='Prosper Otemuyiwa' src='https://bit.ly/prosper-baba' />
+        </WrapItem>
+        <WrapItem>
+        <Avatar name='Christian Nwamba' src='https://bit.ly/code-beast' />
+        </WrapItem>
+        <WrapItem>
+        <Avatar name='Segun Adebayo' src='https://bit.ly/sage-adebayo' />
+        </WrapItem>
+    </Wrap>
+);
+}

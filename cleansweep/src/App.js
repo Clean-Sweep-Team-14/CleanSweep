@@ -10,6 +10,7 @@ import Home from "./Components/Home";
 import Header from "./Components/Header";
 import Chores from './Components/Chores';
 import ProfileStats from './Components/profile-page'; 
+import AvatarImgs from './Components/Avatars';
 // import Dashboard from './/Components/Dashboard';
 
 const App = () => (
@@ -21,6 +22,7 @@ const App = () => (
       <Route path="/chores" element={<Chores />} />
       <Route path="/profile-page" element={<ProfileStats />} />
       <Route path="/chores/" element={<Chores />} />
+      <Route path="/Avatars/" element={<AvatarImgs />} />
       {/* <Route path="/Dashboard/" element={<Dashboard />} /> */}
     </Routes>
   </BrowserRouter>
