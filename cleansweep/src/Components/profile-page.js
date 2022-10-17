@@ -58,7 +58,6 @@ export default function ProfileStats() {
                     <div className="bg-white my-2"> Households: </div>
                 </Stack>
                 </Col>
-
             <div>
                 <ButtonToolbar>
                 <Button bsStyle="primary" bsSize="large" active>

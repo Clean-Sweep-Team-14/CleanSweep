@@ -11,7 +11,8 @@ import Header from "./Components/Header";
 import Chores from './Components/Chores';
 import ProfileStats from './Components/profile-page'; 
 import AvatarImgs from './Components/Avatars';
-// import Dashboard from './/Components/Dashboard';
+import Dashboard from './/Components/Dashboard';
+import Avatars from './Components/Avatars';
 
 const App = () => (
   <BrowserRouter>
@@ -22,8 +23,8 @@ const App = () => (
       <Route path="/chores" element={<Chores />} />
       <Route path="/profile-page" element={<ProfileStats />} />
       <Route path="/chores/" element={<Chores />} />
-      <Route path="/Avatars/" element={<AvatarImgs />} />
-      {/* <Route path="/Dashboard/" element={<Dashboard />} /> */}
+      <Route path="/Avatars/" element={<Avatars />} />
+      <Route path="/Dashboard/" element={<Dashboard />} />
     </Routes>
   </BrowserRouter>
 );

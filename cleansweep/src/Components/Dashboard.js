@@ -1,27 +1,39 @@
 import Page from './Page'
-import Col from 'react-bootstrap/Col'
-import Row from "react-bootstrap/Row";
-import Container from 'react-bootstrap/Container'
-import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn, MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
-// import Header from './Components/Header'
+import { Col, Button, Container, Row, Stack } from 'react-bootstrap'
 
 
 
-// export default function Dashboard() {
+
+
+
+export default function Dashboard() {
     
-//     return (
-//         <Title "CLEANSWEEP" >
-//         <div className="vh-100" style={{ backgroundColor: '#eee' }}>
-//             <MDBContainer className="container py-5 h-100">
-//                 <MDBCol md="12" xl="4">
-//                         <MDBButtonCol>
-//                         <MDBBtn CHORES />
-//                         <MDBBtn MY PROFILE />
-//                         <MDBBtn FRIENDS />
-//                         <MDBBtn LEADERBOARDS />
-//                         </MDBButtonCol>  
-//                 </MDBCol>
-//             </MDBContainer>
-//         </div>
-//     );
-// }
+    return (
+        <div>
+            <Container> 
+                <Stack className='text-center py-5 col-13'>
+                    <div className="display-3 my-2"> CHORES </div>
+                    <div>
+                    <button type="button" class="btn btn-primary">Click Here</button>
+                    </div>
+                    <div className="display-3 my-2"> MY PROFILE </div>
+                    <div>
+                    <button type="button" class="btn btn-success">Click Here</button>
+                    </div>
+                    <div className="display-3 my-2"> FRIENDS </div>
+                    <div>
+                    <button type="button" class="btn btn-danger">Click Here</button>
+                    </div>
+                    <div className="display-3 my-2"> LEADERBOARDS </div>
+                    <div>
+                    <button type="button" class="btn btn-dark">Click Here</button>
+                    </div>
+                </Stack>
+            </Container>
+                {/* <div> 
+                    <input>Your Best Cleaning Day: </input>
+                    <input>Your Worst Cleaning Day:</input>
+                </div>    */}
+        </div>
+    );
+}

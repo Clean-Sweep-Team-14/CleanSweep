@@ -33,17 +33,17 @@ export default function Leaderboards() {
             leaders={["name placeholder", "name placeholder", "name placeholder", "name placeholder"]}
             />
             <LeaderBoardColumn
-            title="Global"
+            title="Friends"
             leaders={allGlobalLeadersData.map((item) => `${item.username} ${item.total_points}`).sort((a, b) => (a.total_points > b.total_points) ? 1 : -1)}
             />
-            <LeaderBoardColumn
+            {/* <LeaderBoardColumn
             title="Friends"
             leaders={["name placeholder", "name placeholder", "name placeholder", "name placeholder"]}
-            />
-            <LeaderBoardColumn
+            /> */}
+            {/* <LeaderBoardColumn
             title="Friends"
             leaders={allFriendsLeadersData.map((item) => `${item.username} ${item.total_points}`).sort((a, b) => (a.total_points > b.total_points) ? 1 : -1)}
-            />
+            /> */}
             
         </Row>
         </Page>
