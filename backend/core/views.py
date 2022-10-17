@@ -1,12 +1,17 @@
+import django
+from django.http import HttpResponse
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
 from rest_framework import generics
+
+from .task import send_email_task
 from .models import Chore, Chore_Tracker, CustomUser, Follow
 from .serializers import ChoreSerializer, ChoreTrackerSerializer, FollowSerializer, UserPointsSerializer
 from django.db.models import Sum, Q
 from rest_framework.views import APIView
+from django.http import HttpResponse
 
 # Create your views here.
 
@@ -14,6 +19,10 @@ from rest_framework.views import APIView
 class ChoreList(generics.ListAPIView):
     queryset = Chore.objects.all()
     serializer_class = ChoreSerializer
+
+    def index(request):
+        send_email_task()
+        return HttpResponse('Email Sent')
 
 
 class EasyChoreList(generics.ListAPIView):

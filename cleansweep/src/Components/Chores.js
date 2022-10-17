@@ -1,8 +1,10 @@
 import Row from "react-bootstrap/Row";
+import Button from "react-bootstrap/Button"
+import React from "react";
 
 import Page from "./Page";
 import LeaderBoardColumn from "./LeaderBoardColumn";
-import { getAllChores, getAllEasyChores, getAllMediumChores, getAllHardChores, getAllBonusChores} from "../Endpoints";
+import { getAllChores, getAllEasyChores, getAllMediumChores, getAllHardChores, getAllBonusChores, postChoresTracker} from "../Endpoints";
 import { useEffect, useState } from "react";
 
 export default function Chores() {
@@ -11,7 +13,8 @@ const [allEasyChoresData, setAllEasyChoresData] = useState([])
 const [allMediumChoresData, setAllMediumChoresData] = useState([])
 const [allHardChoresData, setAllHardChoresData] = useState([])
 const [allBonusChoresData, setAllBonusChoresData] = useState([])
-        useEffect(() => {
+
+    useEffect(() => {
         async function fetchData() {
             try {
                 let response = await getAllEasyChores()
@@ -28,21 +31,34 @@ const [allBonusChoresData, setAllBonusChoresData] = useState([])
             }
             }
             fetchData()
-        }, [])
+        }, []
+    )  
+
+    async function submitChore(e, chorePk) {
+        e.preventDefault()
+        try {
+            const response = await postChoresTracker(chorePk)
+            
+            console.log("New chore added to queue!")
+            } catch(e) {
+            console.log("There was a problem adding a chore."+e)
+            }
+    }
+    
     return (
-        <Page title="Chores">
+        <Page title="Available chores">
         <Row>
             <LeaderBoardColumn
-            title="Easy"
-            leaders={allEasyChoresData.map((item) => item.chore)}
+            title="Easy (5 points)"
+            leaders={allEasyChoresData.map((item) => <Button href=''onClick={(event) => submitChore(event, item.pk)}>{item.chore}</Button>)}
             />
             <LeaderBoardColumn
-            title="Medium"
-            leaders={allMediumChoresData.map((item) => item.chore)}
+            title="Medium (25 points)"
+            leaders={allMediumChoresData.map((item) => <Button href=''onClick={(event) => submitChore(event, item.pk)}>{item.chore}</Button>)}
             />
             <LeaderBoardColumn
-            title="Hard"
-            leaders={allHardChoresData.map((item) => item.chore)}
+            title="Hard (100 points)"
+            leaders={allHardChoresData.map((item) => <Button href=''onClick={(event) => submitChore(event, item.pk)}>{item.chore}</Button>)}
             />
         </Row>
         </Page>
