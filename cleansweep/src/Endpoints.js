@@ -12,6 +12,9 @@ const urls = {
     listAllMediumChores: () => `${apiRoot}/chores/medium/`,
     listAllHardChores: () => `${apiRoot}/chores/hard/`,
     listAllBonusChores: () => `${apiRoot}/chores/bonus/`,
+    listGlobalLeaders: () => `${apiRoot}/leaderboard/global/`,
+    listFriendLeaders: () => `${apiRoot}/leaderboard/friends/`,
+    choresTracker: () => `${apiRoot}/chores/tracker/`
 }
 
 const login = async (body) => {
@@ -52,6 +55,18 @@ const getAllBonusChores = async () => {
     return axios.get(urls.listAllBonusChores())
 }
 
+const postChoresTracker = async (chorePk) => {
+    return axios.post(urls.choresTracker(), {pk:chorePk})
+}
+
+const getListGlobalLeaderboard = async (limit=20) => {
+    return axios.get(urls.listGlobalLeaders(), {limit:limit})
+}
+
+const getListFriendLeaderboard= async (limit=20) => {
+    return axios.get(urls.listFriendLeaders(), {limit:limit})
+}
+
 export {
     login,
     register,
@@ -62,4 +77,7 @@ export {
     getAllMediumChores,
     getAllHardChores,
     getAllBonusChores,
+    getListGlobalLeaderboard,
+    getListFriendLeaderboard,
+    postChoresTracker,
 }
