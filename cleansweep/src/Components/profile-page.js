@@ -25,19 +25,10 @@ export default function ProfileStats() {
                 <MDBCardText className="text-muted mb-4">
                   @CallMeLukie, @Ishaved <span className="mx-2">|</span> <a href="#!">I'll Clean your Clock</a>
                 </MDBCardText>
-                <div className="mb-4 pb-2">
-                  <MDBBtn outline floating>
-                    <MDBIcon fab icon="facebook" size="lg" />
-                  </MDBBtn>
-                  <MDBBtn outline floating className="mx-1">
-                    <MDBIcon fab icon="twitter" size="lg" />
-                  </MDBBtn>
-                  <MDBBtn outline floating>
-                    <MDBIcon fab icon="skype" size="lg" />
-                  </MDBBtn>
-                </div>
+                {/* <div className="mb-4 pb-2"> 
+                </div> */}
                 <MDBBtn rounded size="sm">
-                  Message a Friend
+                  Email a Friend
                 </MDBBtn>
                 <div className="d-flex justify-content-between text-center mt-5 mb-2">
                   <div>
