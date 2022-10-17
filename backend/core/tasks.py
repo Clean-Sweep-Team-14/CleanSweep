@@ -20,6 +20,6 @@ def send_test_email():
     send_mail(
         subject='CleanSweep',
         message='Welcome to CleanSweep!!!!',
-        from_email='CleanSweep',
-        recipient_list=[]
+        from_email='',
+        recipient_list=['cleansweepupdates@gmail.com',]
     )
