@@ -71,7 +71,7 @@ class FriendsLeaderboard(generics.ListAPIView):
     serializer_class = UserPointsSerializer
 
     def get_queryset(self):
-        queryset = CustomUser.objects.filter(Q(friends__in = self.request.user.follows.all()) | Q(pk=self.request.user.pk))
+        queryset = CustomUser.objects.filter(Q(friends__in = self.request.user.follows.all()) | Q(pk=self.request.user.pk)).distinct('pk')
         return queryset
 
 
