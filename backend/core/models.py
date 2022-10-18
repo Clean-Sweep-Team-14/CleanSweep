@@ -26,6 +26,7 @@ class CustomUser(AbstractUser):
         negative_points = sum(late_chores_points)
         return negative_points
 
+
     def actual_points(self):
         return self.total_points() - self.point_deduction()
 
@@ -60,6 +61,10 @@ class Chore_Tracker(models.Model):
     due_date = models.DateTimeField()
     completed_at = models.DateTimeField(default=datetime.datetime.now(), null=True, blank=True)
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name = 'choretrackers')
+
+    # can i set the completed_at field equal to the due_date?
+    # If there is no completed_at date the calculations break
+    # since there is an default in the completed-date the points are automatically included in the total "positive" points
 
     @property
     def is_late(self):
