@@ -5,6 +5,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { LinkContainer } from "react-router-bootstrap";
 import useAuth from "../hooks/useAuth";
+import { logout } from "../Endpoints";
 
 export default function Header(props) {
   const { user } = useAuth();
@@ -23,6 +24,7 @@ export default function Header(props) {
           <LinkContainer to="/Chores">
             <Nav.Link>Chores</Nav.Link>
           </LinkContainer>
+          
           {/* {user ? (
             <button onClick={logout}>Logout</button>
           ) : (
