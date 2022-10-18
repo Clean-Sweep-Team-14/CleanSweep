@@ -31,11 +31,11 @@ export default function Leaderboards() {
         <Row>
             <LeaderBoardColumn
             title="Global"
-            leaders={allGlobalLeadersData.map((item) => `${item.username} ${item.total_points}`).sort((a, b) => (a.total_points > b.total_points) ? 1 : -1)}
+            leaders={allGlobalLeadersData.map((item) => `${item.username} ${item.total_points}`).sort((a, b) => (a.total_points > b.total_points) )}
             />
             <LeaderBoardColumn
             title="Friends"
-            leaders={allFriendsLeadersData.map((item) => item.username)}
+            leaders={allFriendsLeadersData.map((item) => `${item.username} ${item.total_points}`).sort((a, b) => (a.total_points > b.total_points) ? 1 : -1)}
             />
         </Row>
         </Page>
