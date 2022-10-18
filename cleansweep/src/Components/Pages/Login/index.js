@@ -26,6 +26,7 @@ const Login = () => {
       </label>
 
       <button disabled={loading}>Submit</button>
+      {/* {error && <p>Error</p>} */}
     </form>
   );
 };

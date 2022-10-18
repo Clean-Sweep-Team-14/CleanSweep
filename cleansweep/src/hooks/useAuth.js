@@ -1,18 +1,19 @@
 import { createContext, useContext, useMemo, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import * as apiEndpoints from "../Endpoints";
+import { useLocalStorage } from "./useLocalStorage";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState();
+  const [user, setUser] = useLocalStorage("user", null);
+
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation();
 
-  const login = async (email, password) => {
+  const login = async (username, password) => {
     const body = {
-      email,
+      username,
       password,
     };
 
@@ -21,7 +22,18 @@ export const AuthProvider = ({ children }) => {
     try {
       const response = await apiEndpoints.login(body);
       setLoading(false);
-      console.log("resoponse", response.status);
+
+      if (response.status === 200) {
+        // This should be data returned from the server instead of shaping the data yourself
+
+        const userData = {
+          username,
+          auth_token: response.data.auth_token,
+        };
+
+        setUser(userData);
+        navigate("/");
+      }
     } catch (err) {
       console.log(err);
       setLoading(false);

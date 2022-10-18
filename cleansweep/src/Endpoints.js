@@ -17,7 +17,7 @@ const urls = {
   choresTracker: () => `${apiRoot}/chores/tracker/`,
 };
 
-const login = async ({ body }) => {
+const login = async (body) => {
   return axios.post(urls.login(), body);
 };
 
