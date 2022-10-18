@@ -30,8 +30,6 @@ export default function Header(props) {
                 <Nav.Link>Leaderboards</Nav.Link>
             </LinkContainer>
             </Nav>
-            <button>Login/Register</button>
-            <button>Logout</button>
         </Container>
         </Navbar>
     );
