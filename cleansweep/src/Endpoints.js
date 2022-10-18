@@ -17,6 +17,12 @@ const urls = {
   choresTracker: () => `${apiRoot}/chores/tracker/`,
 };
 
+const formatAuthedHeader = (token) => ({
+  headers: {
+    Authorization: `token ${token}`,
+  },
+});
+
 const login = async (body) => {
   return axios.post(urls.login(), body);
 };
@@ -62,8 +68,9 @@ const getListGlobalLeaderboard = async (limit = 20) => {
   return axios.get(urls.listGlobalLeaders(), { limit: limit });
 };
 
-const getListFriendLeaderboard = async (limit = 20) => {
-  return axios.get(urls.listFriendLeaders(), { limit: limit });
+const getListFriendLeaderboard = async (token) => {
+  const authedHeader = formatAuthedHeader(token);
+  return axios.get(urls.listFriendLeaders(), authedHeader);
 };
 
 export {
