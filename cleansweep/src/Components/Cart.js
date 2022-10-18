@@ -24,7 +24,7 @@ export default function UserCart () {
     return (
         
         <Page title="Cleansweep Cart">
-        <h4 className="header text-center text-black-50 m-3">User Chores Cart</h4>
+        <h4 className="header text-center text-black-50 m-3">${User} Chores Cart</h4>
         <Row>
             <Col>
             {/* <input
