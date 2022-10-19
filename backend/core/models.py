@@ -15,13 +15,13 @@ class CustomUser(AbstractUser):
     avatar_picture = models.ImageField(upload_to = 'users', blank=True, null=True)
 
     def total_points(self):
-        chores_points=[tracker.chore.point for tracker in self.choretrackers.all() if not tracker.is_late and tracker.completed==True]
+        chores_points=[tracker.chore.point for tracker in self.choretrackers.all() if tracker.completed==True and not tracker.is_late]
         positive_points = sum(chores_points)
         return positive_points
 
 
     def point_deduction(self):
-        late_chores_points=[tracker.chore.point for tracker in self.choretrackers.all() if tracker.is_late and tracker.completed==False]
+        late_chores_points=[tracker.chore.point for tracker in self.choretrackers.all() if tracker.completed==False and tracker.is_late]
         negative_points = sum(late_chores_points)
         return negative_points
 
