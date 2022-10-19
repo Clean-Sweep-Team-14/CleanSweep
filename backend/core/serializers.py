@@ -28,11 +28,11 @@ class FollowSerializer(serializers.ModelSerializer):
 
 
 class UserPointsSerializer(serializers.ModelSerializer):
-    total_points = serializers.SerializerMethodField()
+    actual_points = serializers.SerializerMethodField()
 
     class Meta:
         model = CustomUser
         fields = ('pk', 'username', 'actual_points')
 
     def get_actual_points(self, obj):
-        return obj.actual_points.get("chore__point__sum")
+        return obj.actual_points()
