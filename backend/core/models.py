@@ -19,7 +19,6 @@ class CustomUser(AbstractUser):
         positive_points = sum(chores_points)
         return positive_points
 
-        # return self.choretrackers.filter(completed_at=True).aggregate(Sum('chore__point', default=0))
 
     def point_deduction(self):
         late_chores_points=[tracker.chore.point for tracker in self.choretrackers.all() if tracker.is_late]
@@ -62,15 +61,10 @@ class Chore_Tracker(models.Model):
     completed = models.BooleanField(default = False)
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name = 'choretrackers')
 
-    # can i set the completed_at field equal to the due_date?
-    # since there is an default in the completed-date the points are automatically included in the total "positive" points
 
     @property
     def is_late(self):
         return pytz.utc.localize(datetime.datetime.today()) > self.due_date and self.completed==False
-
-        #  pytz.utc.localize(datetime.datetime.today ())
-        # return self.due_date < self.completed_at
 
 
     def __str__(self):
