@@ -6,14 +6,20 @@ import { useLocalStorage } from "./useLocalStorage";
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState(["test"]);
+  const [cart, setCart] = useState([]);
   // const scopedCart = {...cart}
   // const formattedChore = {"chore" : chore.pk, "day" : 0}
   // scopedCart[chore.pk] = formattedChore
-  const addToCart = (chore) => {
-    const scopedCart = [...cart];
-    const formattedChore = { chore: chore.pk, day: 0 };
+  const addToCart = (chore, choreDay) => {
+    let scopedCart = [...cart];
+    console.log(`scopedCart is ${JSON.stringify(scopedCart)}`);
+    const formattedChore = {
+      chore: chore,
+      day: choreDay,
+    };
+    console.log(`formattedChore is ${JSON.stringify(formattedChore)}`);
     scopedCart = [...scopedCart, formattedChore];
+    console.log(`scopedCart is ${JSON.stringify(scopedCart)}`);
     setCart(scopedCart);
   };
 

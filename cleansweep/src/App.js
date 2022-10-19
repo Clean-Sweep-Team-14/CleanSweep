@@ -12,6 +12,7 @@ import Chores from "./Components/Chores";
 import useAuth, { AuthProvider } from "./hooks/useAuth";
 import Login from "./Components/Pages/Login";
 import { CartProvider } from "./hooks/useCart";
+import Cart from "./Components/Pages/Cart";
 
 const AuthenticatedRoute = ({ children }) => {
   const { user } = useAuth();
@@ -41,14 +42,22 @@ const Router = () => (
         </AuthenticatedRoute>
       }
     />
+    <Route
+      path="/cart"
+      element={
+        <AuthenticatedRoute>
+          <Cart />
+        </AuthenticatedRoute>
+      }
+    />
   </Routes>
 );
 const App = () => (
   <BrowserRouter>
     <AuthProvider>
       <CartProvider>
-      <Header />
-      <Router />
+        <Header />
+        <Router />
       </CartProvider>
     </AuthProvider>
   </BrowserRouter>

@@ -23,6 +23,9 @@ export default function Header(props) {
           <LinkContainer to="/Chores">
             <Nav.Link>Chores</Nav.Link>
           </LinkContainer>
+          <LinkContainer to="/Cart">
+            <Nav.Link>Cart</Nav.Link>
+          </LinkContainer>
         </Nav>
         <Navbar.Collapse className="justify-content-end">
           {" "}
