@@ -60,7 +60,7 @@ export default function Chores() {
                 <Button
                   href=""
                   onClick={(e) => {
-                    submitChore(e, item, new Date().toISOString());
+                    submitChore(e, item);
                   }}
                 >
                   Add
