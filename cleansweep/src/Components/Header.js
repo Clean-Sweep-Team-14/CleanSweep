@@ -5,10 +5,9 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { LinkContainer } from "react-router-bootstrap";
 import useAuth from "../hooks/useAuth";
-import { logout } from "../Endpoints";
 
 export default function Header(props) {
-  const { user } = useAuth();
+  const { user, loggedOut } = useAuth();
 
   return (
     <Navbar bg="dark" variant="dark">
@@ -24,16 +23,19 @@ export default function Header(props) {
           <LinkContainer to="/Chores">
             <Nav.Link>Chores</Nav.Link>
           </LinkContainer>
-          
-          {/* {user ? (
-            <button onClick={logout}>Logout</button>
-          ) : (
-            <div>
-              <button>Login</button>
-              <button>Signup</button>
-            </div>
-          )} */}
         </Nav>
+        <Navbar.Collapse className="justify-content-end">
+          {" "}
+          {user ? (
+            <button onClick={loggedOut}>Logout</button>
+          ) : (
+            <Nav>
+            <LinkContainer to="/login">
+              <Nav.Link>Login</Nav.Link>
+            </LinkContainer>
+            </Nav>
+          )}
+        </Navbar.Collapse>
       </Container>
     </Navbar>
   );

@@ -9,7 +9,6 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useLocalStorage("user", null);
 
   const [loading, setLoading] = useState(false);
-  const [logout, setLogout] = useLocalStorage(false);
   const navigate = useNavigate();
 
   const login = async (username, password) => {
@@ -43,7 +42,7 @@ export const AuthProvider = ({ children }) => {
 
   const loggedOut = () => {
     setUser(null);
-    navigate("/login", { replace: true });
+    navigate("/", { replace: true });
   };
 
   const memoedValue = useMemo(
@@ -51,7 +50,7 @@ export const AuthProvider = ({ children }) => {
       user,
       loading,
       login,
-      logout
+      loggedOut
     }),
     [user, loading]
   );

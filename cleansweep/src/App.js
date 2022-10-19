@@ -11,6 +11,7 @@ import Header from "./Components/Header";
 import Chores from "./Components/Chores";
 import useAuth, { AuthProvider } from "./hooks/useAuth";
 import Login from "./Components/Pages/Login";
+import { CartProvider } from "./hooks/useCart";
 
 const AuthenticatedRoute = ({ children }) => {
   const { user } = useAuth();
@@ -45,8 +46,10 @@ const Router = () => (
 const App = () => (
   <BrowserRouter>
     <AuthProvider>
+      <CartProvider>
       <Header />
       <Router />
+      </CartProvider>
     </AuthProvider>
   </BrowserRouter>
 );
