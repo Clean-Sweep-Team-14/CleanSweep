@@ -44,8 +44,6 @@ export default function Leaderboards() {
           leaders={allFriendsLeadersData
             .map((item) => `${item.username} ${item.total_points}`)
             .sort((a, b) => (a.total_points > b.total_points ? 1 : -1))}
-        
-
         />
       </Row>
     </Page>

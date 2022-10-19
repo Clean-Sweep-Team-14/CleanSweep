@@ -4,6 +4,7 @@ import React from "react";
 
 import Page from "./Page";
 import LeaderBoardColumn from "./LeaderBoardColumn";
+import CartColumn from './CartColumn'
 import { getAllChores, getAllEasyChores, getAllMediumChores, getAllHardChores, getAllBonusChores, postChoresTracker} from "../Endpoints";
 import { useEffect, useState } from "react";
 
@@ -46,21 +47,21 @@ const [allBonusChoresData, setAllBonusChoresData] = useState([])
     }
     
     return (
-        <Page title="Available chores">
-        <Row>
-            <LeaderBoardColumn
-            title="Easy (5 points)"
-            leaders={allEasyChoresData.map((item) => <Button href=''onClick={(event) => submitChore(event, item.pk)}>{item.chore}</Button>)}
-            />
-            <LeaderBoardColumn
-            title="Medium (25 points)"
-            leaders={allMediumChoresData.map((item) => <Button href=''onClick={(event) => submitChore(event, item.pk)}>{item.chore}</Button>)}
-            />
-            <LeaderBoardColumn
-            title="Hard (100 points)"
-            leaders={allHardChoresData.map((item) => <Button href=''onClick={(event) => submitChore(event, item.pk)}>{item.chore}</Button>)}
-            />
-        </Row>
-        </Page>
+            <Page title="Available chores">
+                <Row>
+                    <LeaderBoardColumn
+                    title="Easy (5 points)"
+                    leaders={allEasyChoresData.map((item) => <Button href=''onClick={(event) => submitChore(event, item.pk)}>{item.chore}</Button>)}
+                    />
+                    <LeaderBoardColumn
+                    title="Medium (25 points)"
+                    leaders={allMediumChoresData.map((item) => <Button href=''onClick={(event) => submitChore(event, item.pk)}>{item.chore}</Button>)}
+                    />
+                    <LeaderBoardColumn
+                    title="Hard (100 points)"
+                    leaders={allHardChoresData.map((item) => <Button href=''onClick={(event) => submitChore(event, item.pk)}>{item.chore}</Button>)}
+                    />
+                </Row>
+            </Page>
     );
 }
