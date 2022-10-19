@@ -24,15 +24,18 @@ export default function Header(props) {
           <LinkContainer to="/Chores">
             <Nav.Link>Chores</Nav.Link>
           </LinkContainer>
+          <LinkContainer to="/Cart">
+            <Nav.Link>Cart</Nav.Link>
+          </LinkContainer>
           
-          {/* {user ? (
+          {user ? (
             <button onClick={logout}>Logout</button>
           ) : (
             <div>
               <button>Login</button>
               <button>Signup</button>
             </div>
-          )} */}
+          )}
         </Nav>
       </Container>
     </Navbar>

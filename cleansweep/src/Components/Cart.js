@@ -5,6 +5,11 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { choresTracker } from "../Endpoints";
 import { Col } from "react-bootstrap";
+import { encodeUsername } from "./utils";
+import useAuth from "../hooks/useAuth";
+import React from 'react';
+
+
 
 export default function UserCart () {
     const [choresTracker, setchoresTracker] = useState([])
@@ -23,16 +28,15 @@ export default function UserCart () {
         }, [])
     return (
         
-        <Page title="Cleansweep Cart">
-        <h4 className="header text-center text-black-50 m-3">${User} Chores Cart</h4>
-        <Row>
+        <Page title="Your Chores Cart">
+        <h4 className="header text-center text-black-50 m-3">{encodeUsername} You Chose These Chores</h4>
+        {/* <Row>
             <Col>
-            {/* <input
-            title="User Chores Cart"
-            // chores={choresTracker.map((item) => `${item.chore} ${item.point}`).sort((a, b) => (a.chore > b.point) ? 1 : -1)}
-            /> */}
+               <ul>
+                {choresTracker.map((item) => (`${item.chore} ${item.point}`).sort((a, b) => (a.chore > b.point) ? 1 : -1))}
+                </ul> 
             </Col>
-        </Row>
+        </Row> */}
         </Page>
     );
 }

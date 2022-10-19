@@ -1,6 +1,6 @@
 import ListGroup from "react-bootstrap/ListGroup";
 
-export default function NumberedListGroup(props) {
+export default function CartListGroup(props) {
     return (
         <ListGroup className="py-2" as="ol" >
         {props.items.map((item) => (

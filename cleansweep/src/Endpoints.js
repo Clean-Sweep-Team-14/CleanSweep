@@ -64,6 +64,10 @@ const postChoresTracker = async (chorePk) => {
   return axios.post(urls.choresTracker(), { pk: chorePk });
 };
 
+const getChoresTracker = async (chorePk) => {
+  return axios.post(urls.choresTracker(), { pk: chorePk });
+};
+
 const getListGlobalLeaderboard = async (limit = 20) => {
   return axios.get(urls.listGlobalLeaders(), { limit: limit });
 };
@@ -85,5 +89,6 @@ export {
   getAllBonusChores,
   getListGlobalLeaderboard,
   getListFriendLeaderboard,
+  getChoresTracker,
   postChoresTracker,
 };
