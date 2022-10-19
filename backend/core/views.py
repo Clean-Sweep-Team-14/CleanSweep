@@ -58,7 +58,7 @@ class ChoreTracker(generics.ListCreateAPIView):
         serializer.save(user=self.request.user)
 
     def get_queryset(self):
-        queryset = Chore_Tracker.objects.filter(user=self.request.user.pk, complete=False).order_by('day')
+        queryset = Chore_Tracker.objects.filter(user=self.request.user.pk, completed=False).order_by('due_date')
         return queryset
 
 

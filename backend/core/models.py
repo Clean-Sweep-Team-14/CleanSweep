@@ -59,19 +59,18 @@ class Chore(models.Model):
 class Chore_Tracker(models.Model):
     chore = models.ForeignKey(Chore, on_delete=models.CASCADE, related_name = 'choretrackers')
     due_date = models.DateTimeField()
-    completed_at = models.DateTimeField(default=datetime.datetime.now(), null=True, blank=True)
+    completed = models.BooleanField(default = False)
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name = 'choretrackers')
 
     # can i set the completed_at field equal to the due_date?
-    # If there is no completed_at date the calculations break
     # since there is an default in the completed-date the points are automatically included in the total "positive" points
 
     @property
     def is_late(self):
-        return self.due_date <= self.completed_at
-        
-        
+        return pytz.utc.localize(datetime.datetime.today()) > self.due_date and self.completed==False
+
         #  pytz.utc.localize(datetime.datetime.today ())
+        # return self.due_date < self.completed_at
 
 
     def __str__(self):
