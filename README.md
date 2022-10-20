@@ -805,3 +805,60 @@ Response Example (201 Created)
 ```
 No body returned for response
 ```
+
+#### The Global Leaderboard - User Authentication **Required**
+
+```http
+GET - https://clean-sweep-team-14.herokuapp.com/leaderboard/global/
+```
+
+| Body       | Type     | Description               |
+| :--------- | :------- | :-------------------------|
+| `""`       | `""`     |  ""                       |
+
+
+Request Sample:
+
+```
+GET /leaderboard/global/
+Content-Type: json
+Authorization: Required 
+Host: clean-sweep-team-14.herokuapp.com
+
+{
+	"""
+}
+```
+
+Response Example (200 Ok)
+
+```
+{
+	"count": 9,
+	"next": null,
+	"previous": null,
+	"results": [
+		{
+			"pk": 2,
+			"username": "Groot",
+			"total_points": 0
+		},
+		{
+			"pk": 3,
+			"username": "testuser",
+			"total_points": 100
+		},
+		{
+			"pk": 4,
+			"username": "NotoriousBOB",
+			"total_points": 0
+		},
+		{
+			"pk": 9,
+			"username": "Garytestuser",
+			"total_points": 0
+		}
+	]
+}
+
+```
