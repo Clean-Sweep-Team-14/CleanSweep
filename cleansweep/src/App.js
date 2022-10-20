@@ -12,7 +12,7 @@ import Chores from "./Components/Chores";
 import useAuth, { AuthProvider } from "./hooks/useAuth";
 import Login from "./Components/Pages/Login";
 import { CartProvider } from "./hooks/useCart";
-import Cart from "./Components/Pages/Cart";
+import Cart from "./Components/Pages/MyChores";
 import Register from "./Components/Pages/Register";
 
 const AuthenticatedRoute = ({ children }) => {
