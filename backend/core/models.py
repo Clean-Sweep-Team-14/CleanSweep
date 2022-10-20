@@ -4,6 +4,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.db.models import Sum, Q
 from django.db.models.constraints import UniqueConstraint
+import datetime
+import pytz
 
 
 
@@ -12,11 +14,21 @@ class CustomUser(AbstractUser):
     
     avatar_picture = models.ImageField(upload_to = 'users', blank=True, null=True)
 
-    @property
     def total_points(self):
-        return self.choretrackers.filter(complete=True).aggregate(Sum('chore__point', default=0))
+        chores_points=[tracker.chore.point for tracker in self.choretrackers.all() if tracker.completed==True and not tracker.is_late]
+        positive_points = sum(chores_points)
+        return positive_points
 
-    pass
+
+    def point_deduction(self):
+        late_chores_points=[tracker.chore.point for tracker in self.choretrackers.all() if tracker.completed==False and tracker.is_late]
+        negative_points = sum(late_chores_points)
+        return negative_points
+
+
+    def actual_points(self):
+        return self.total_points() - self.point_deduction()
+
 
     def __str__(self):
         return self.username
@@ -45,12 +57,18 @@ class Chore(models.Model):
 
 class Chore_Tracker(models.Model):
     chore = models.ForeignKey(Chore, on_delete=models.CASCADE, related_name = 'choretrackers')
-    day = models.DateTimeField()
-    complete = models.BooleanField(default=False)
+    due_date = models.DateTimeField()
+    completed = models.BooleanField(default = False)
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name = 'choretrackers')
 
+
+    @property
+    def is_late(self):
+        return pytz.utc.localize(datetime.datetime.today()) > self.due_date and self.completed==False
+
+
     def __str__(self):
-        return f'{self.chore} on {self.day}'
+        return f'{self.chore} on {self.due_date}'
 
 
 class Follow(models.Model):

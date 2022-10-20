@@ -17,7 +17,7 @@ class ChoreTrackerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Chore_Tracker
-        fields = ('chore', 'day', 'complete', 'user', 'pk')
+        fields = ('chore', 'due_date', 'completed', 'user', 'pk', 'is_late')
 
 
 class FollowSerializer(serializers.ModelSerializer):
@@ -28,11 +28,11 @@ class FollowSerializer(serializers.ModelSerializer):
 
 
 class UserPointsSerializer(serializers.ModelSerializer):
-    total_points = serializers.SerializerMethodField()
+    actual_points = serializers.SerializerMethodField()
 
     class Meta:
         model = CustomUser
-        fields = ('pk', 'username', 'total_points')
+        fields = ('pk', 'username', 'actual_points')
 
-    def get_total_points(self, obj):
-        return obj.total_points.get("chore__point__sum")
+    def get_actual_points(self, obj):
+        return obj.actual_points()

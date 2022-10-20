@@ -58,7 +58,7 @@ class ChoreTracker(generics.ListCreateAPIView):
         serializer.save(user=self.request.user)
 
     def get_queryset(self):
-        queryset = Chore_Tracker.objects.filter(user=self.request.user.pk, complete=False).order_by('day')
+        queryset = Chore_Tracker.objects.filter(user=self.request.user.pk, completed=False).order_by('due_date')
         return queryset
 
 
@@ -70,9 +70,9 @@ class ChoreTrackerUpdate(generics.RetrieveUpdateDestroyAPIView):
 class PointsList(APIView):
 
     def get(self, request, format=None):
-        query_results = request.user.choretrackers.filter(complete=True).aggregate(Sum('chore__point'))
+        query_results = request.user.actual_points()
 
-        return Response(query_results)
+        return Response({"actual_points":query_results})
 
 
 class GlobalLeaderboard(generics.ListAPIView):
