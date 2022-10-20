@@ -56,8 +56,14 @@ class Chore(models.Model):
 
 
 class Chore_Tracker(models.Model):
+    
+    def get_due_date():
+        now = pytz.utc.localize(datetime.datetime.today())
+        return now + datetime.timedelta(days=1)
+
+
     chore = models.ForeignKey(Chore, on_delete=models.CASCADE, related_name = 'choretrackers')
-    due_date = models.DateTimeField()
+    due_date = models.DateTimeField(default=get_due_date)
     completed = models.BooleanField(default = False)
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name = 'choretrackers')
 
@@ -65,6 +71,8 @@ class Chore_Tracker(models.Model):
     @property
     def is_late(self):
         return pytz.utc.localize(datetime.datetime.today()) > self.due_date and self.completed==False
+    
+
 
 
     def __str__(self):
