@@ -1,5 +1,6 @@
 import useAuth from "../../../hooks/useAuth";
-
+import Button from "react-bootstrap/button";
+import Register from "../Register";
 
 const Login = () => {
   const { login, loading } = useAuth();
@@ -27,7 +28,9 @@ const Login = () => {
       </label>
 
       <button disabled={loading}>Submit</button>
-      {/* {error && <p>Error</p>} */}
+      <Button component={Register} to="/register">
+        Register!
+      </Button>
     </form>
   );
 };
