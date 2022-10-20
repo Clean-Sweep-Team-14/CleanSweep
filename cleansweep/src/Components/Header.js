@@ -14,9 +14,6 @@ export default function Header(props) {
       <Container>
         <Navbar.Brand href="#home">CleanSweep</Navbar.Brand>
         <Nav className="me-auto">
-          {/* <LinkContainer to="/">
-            <Nav.Link>Home</Nav.Link>
-          </LinkContainer> */}
           <LinkContainer to="/leaderboards">
             <Nav.Link>Leaderboards</Nav.Link>
           </LinkContainer>
@@ -34,7 +31,7 @@ export default function Header(props) {
           ) : (
             <Nav>
             <LinkContainer to="/login">
-              <Nav.Link>Login</Nav.Link>
+              <Nav.Link>Login/Register</Nav.Link>
             </LinkContainer>
             </Nav>
           )}

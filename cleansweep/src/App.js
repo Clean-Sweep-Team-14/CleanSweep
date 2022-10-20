@@ -1,7 +1,7 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, Switch } from "react-router-dom";
 import axios from "axios";
 
 //components
@@ -13,6 +13,7 @@ import useAuth, { AuthProvider } from "./hooks/useAuth";
 import Login from "./Components/Pages/Login";
 import { CartProvider } from "./hooks/useCart";
 import Cart from "./Components/Pages/Cart";
+import Register from "./Components/Pages/Register";
 
 const AuthenticatedRoute = ({ children }) => {
   const { user } = useAuth();
@@ -26,6 +27,7 @@ const Router = () => (
   <Routes>
     <Route path="/" element={<Home />} />
     <Route path="/login" element={<Login />} />
+    <Route path="/register" element={<Register />} />
     <Route
       path="/leaderboards"
       element={
