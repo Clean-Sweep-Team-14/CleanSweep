@@ -71,19 +71,38 @@ export default function Chores() {
         />
         <LeaderBoardColumn
           title="Medium (25 points)"
-          leaders={allMediumChoresData.map((item) => (
-            <Button href="" onClick={(event) => submitChore(event, item.pk)}>
-              {item.chore}
-            </Button>
-          ))}
+          leaders={allMediumChoresData.map((item) => {return (
+            <>
+              {item.chore}{" "}
+              <Button
+                href=""
+                onClick={(e) => {
+                  submitChore(e, item);
+                }}
+                >
+                  Add
+                </Button>
+              </>
+            );
+          })}
+          
         />
         <LeaderBoardColumn
           title="Hard (100 points)"
-          leaders={allHardChoresData.map((item) => (
-            <Button href="" onClick={(event) => submitChore(event, item.pk)}>
-              {item.chore}
-            </Button>
-          ))}
+          leaders={allHardChoresData.map((item) => {return (
+            <>
+              {item.chore}{" "}
+              <Button
+                href=""
+                onClick={(e) => {
+                  submitChore(e, item);
+                }}
+                >
+                  Add
+                </Button>
+              </>
+            );
+          })}
         />
       </Row>
     </Page>
