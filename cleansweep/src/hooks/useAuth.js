@@ -24,7 +24,6 @@ export const AuthProvider = ({ children }) => {
       setLoading(false);
 
       if (response.status === 200) {
-        // This should be data returned from the server instead of shaping the data yourself
 
         const userData = {
           username,
@@ -32,7 +31,7 @@ export const AuthProvider = ({ children }) => {
         };
 
         setUser(userData);
-        navigate("/");
+        navigate("/Chores");
       }
     } catch (err) {
       console.log(err);
@@ -42,7 +41,7 @@ export const AuthProvider = ({ children }) => {
 
   const loggedOut = () => {
     setUser(null);
-    navigate("/", { replace: true });
+    navigate("/Chores", { replace: true });
   };
 
   const memoedValue = useMemo(

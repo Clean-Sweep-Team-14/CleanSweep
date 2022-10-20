@@ -31,19 +31,20 @@ export default function Leaderboards() {
   }, []);
   return (
     <Page title="Leaderboards">
-      <h4 className="header text-center text-black-50 m-3">CleanSweep</h4>
       <Row>
         <LeaderBoardColumn
           title="Global"
           leaders={allGlobalLeadersData
+            .sort((a, b) => (a.total_points < b.total_points ? 1 : -1))
             .map((item) => `${item.username} ${item.total_points}`)
-            .sort((a, b) => (a.total_points > b.total_points ? 1 : -1))}
+            }
         />
         <LeaderBoardColumn
           title="Friends"
           leaders={allFriendsLeadersData
+            .sort((a, b) => (a.total_points < b.total_points ? 1 : -1))
             .map((item) => `${item.username} ${item.total_points}`)
-            .sort((a, b) => (a.total_points > b.total_points ? 1 : -1))}
+            }
         
 
         />

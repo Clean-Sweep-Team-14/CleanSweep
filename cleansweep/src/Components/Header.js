@@ -14,17 +14,14 @@ export default function Header(props) {
       <Container>
         <Navbar.Brand href="#home">CleanSweep</Navbar.Brand>
         <Nav className="me-auto">
-          <LinkContainer to="/">
-            <Nav.Link>Home</Nav.Link>
-          </LinkContainer>
           <LinkContainer to="/leaderboards">
             <Nav.Link>Leaderboards</Nav.Link>
           </LinkContainer>
           <LinkContainer to="/Chores">
-            <Nav.Link>Chores</Nav.Link>
+            <Nav.Link>Available Chores</Nav.Link>
           </LinkContainer>
           <LinkContainer to="/Cart">
-            <Nav.Link>Cart</Nav.Link>
+            <Nav.Link>My Chores</Nav.Link>
           </LinkContainer>
         </Nav>
         <Navbar.Collapse className="justify-content-end">
@@ -34,7 +31,7 @@ export default function Header(props) {
           ) : (
             <Nav>
             <LinkContainer to="/login">
-              <Nav.Link>Login</Nav.Link>
+              <Nav.Link>Login/Register</Nav.Link>
             </LinkContainer>
             </Nav>
           )}
