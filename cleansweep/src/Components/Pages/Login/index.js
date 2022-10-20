@@ -1,5 +1,6 @@
 import useAuth from "../../../hooks/useAuth";
 
+
 const Login = () => {
   const { login, loading } = useAuth();
 
@@ -22,7 +23,7 @@ const Login = () => {
 
       <label>
         Password
-        <input name="password" />
+        <input type="password" name="password" />
       </label>
 
       <button disabled={loading}>Submit</button>

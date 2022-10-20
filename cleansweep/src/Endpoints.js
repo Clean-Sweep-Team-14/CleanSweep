@@ -1,5 +1,4 @@
 import axios from "axios";
-import { encodeUsername } from "./Components/utils";
 
 const apiRoot = "https://clean-sweep-team-14.herokuapp.com";
 
@@ -27,10 +26,6 @@ const login = async (body) => {
   return axios.post(urls.login(), body);
 };
 
-const register = async (body) => {
-  body.username = encodeUsername(body.username.trim());
-  return axios.post(urls.register(), body);
-};
 
 const logout = async (token) => {
   return axios.post(urls.logout(), "", {
@@ -79,7 +74,6 @@ const getListFriendLeaderboard = async (token) => {
 
 export {
   login,
-  register,
   logout,
   urls,
   getAllChores,
