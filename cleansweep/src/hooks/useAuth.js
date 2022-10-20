@@ -24,7 +24,6 @@ export const AuthProvider = ({ children }) => {
       setLoading(false);
 
       if (response.status === 200) {
-        // This should be data returned from the server instead of shaping the data yourself
 
         const userData = {
           username,
