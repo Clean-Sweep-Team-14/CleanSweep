@@ -14,14 +14,14 @@ export default function Header(props) {
       <Container>
         <Navbar.Brand href="/">CleanSweep</Navbar.Brand>
         <Nav className="me-auto">
-          <LinkContainer to="/leaderboards">
-            <Nav.Link>Leaderboards</Nav.Link>
-          </LinkContainer>
           <LinkContainer to="/Chores">
             <Nav.Link>Add Chores</Nav.Link>
           </LinkContainer>
           <LinkContainer to="/MyChores">
             <Nav.Link>My Chores</Nav.Link>
+          </LinkContainer>
+          <LinkContainer to="/leaderboards">
+            <Nav.Link>Leaderboards</Nav.Link>
           </LinkContainer>
         </Nav>
         <Navbar.Collapse className="justify-content-end">
@@ -30,9 +30,9 @@ export default function Header(props) {
             <button onClick={loggedOut}>Logout</button>
           ) : (
             <Nav>
-            <LinkContainer to="/login">
-              <Nav.Link>Login</Nav.Link>
-            </LinkContainer>
+              <LinkContainer to="/login">
+                <Nav.Link>Login</Nav.Link>
+              </LinkContainer>
             </Nav>
           )}
         </Navbar.Collapse>
