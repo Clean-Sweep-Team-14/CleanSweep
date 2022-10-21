@@ -862,3 +862,55 @@ Response Example (200 Ok)
 }
 
 ```
+
+#### The Friends Leaderboard - User Authentication **Required**
+
+```http
+GET - https://clean-sweep-team-14.herokuapp.com/leaderboard/friends/
+```
+
+| Body       | Type     | Description               |
+| :--------- | :------- | :-------------------------|
+| `""`       | `""`     |  ""                       |
+
+
+Request Sample:
+
+```
+GET /leaderboard/friends/
+Content-Type: json
+Authorization: Required 
+Host: clean-sweep-team-14.herokuapp.com
+
+{
+	"""
+}
+```
+
+Response Example (200 Ok)
+
+```
+{
+	"count": 3,
+	"next": null,
+	"previous": null,
+	"results": [
+		{
+			"pk": 2,
+			"username": "Groot",
+			"actual_points": 0
+		},
+		{
+			"pk": 3,
+			"username": "testuser",
+			"actual_points": -100
+		},
+		{
+			"pk": 5,
+			"username": "TestUserLogin",
+			"actual_points": -20
+		}
+	]
+}
+
+```
