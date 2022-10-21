@@ -1,30 +1,19 @@
 import useCart from "../../../hooks/useCart";
 import { Row, Butto, Col, ListGroup, ListGroupItem } from "react-bootstrap";
 import useAuth from "../../../hooks/useAuth";
+import Page from "../../Page";
 
-const Cart = () => {
-  const { cart } = useCart();
+const MyChores = () => {
   const { user } = useAuth();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
-
   return (
-    <Row>
-      <Col>
-        <ListGroup>
-          {cart.map((item) => {
-            console.log(JSON.stringify(item));
-            console.log(item.chore.day);
-            return (
-            <ListGroup.Item>{item.chore.chore.chore} {item.chore.day}</ListGroup.Item>
-            
-          )})}
-        </ListGroup>
-      </Col>
-    </Row>
+      <Page title="My Chores">
+        <Row>
+          <Col>
+          </Col>
+        </Row>
+      </Page>
   );
 };
 
-export default Cart;
+export default MyChores;

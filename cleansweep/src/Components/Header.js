@@ -12,15 +12,15 @@ export default function Header(props) {
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand href="#home">CleanSweep</Navbar.Brand>
+        <Navbar.Brand href="/">CleanSweep</Navbar.Brand>
         <Nav className="me-auto">
           <LinkContainer to="/leaderboards">
             <Nav.Link>Leaderboards</Nav.Link>
           </LinkContainer>
           <LinkContainer to="/Chores">
-            <Nav.Link>Available Chores</Nav.Link>
+            <Nav.Link>Add Chores</Nav.Link>
           </LinkContainer>
-          <LinkContainer to="/Cart">
+          <LinkContainer to="/MyChores">
             <Nav.Link>My Chores</Nav.Link>
           </LinkContainer>
         </Nav>
@@ -31,7 +31,7 @@ export default function Header(props) {
           ) : (
             <Nav>
             <LinkContainer to="/login">
-              <Nav.Link>Login/Register</Nav.Link>
+              <Nav.Link>Login</Nav.Link>
             </LinkContainer>
             </Nav>
           )}
