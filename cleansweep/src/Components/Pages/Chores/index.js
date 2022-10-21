@@ -2,26 +2,27 @@ import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import React from "react";
 
-import Page from "./Page";
-import useCart from "../hooks/useCart";
-import LeaderBoardColumn from "./LeaderBoardColumn";
+import Page from "../../Page";
+import useCart from "../../../hooks/useCart";
+import LeaderBoardColumn from "../../LeaderBoardColumn";
 import {
-  getAllChores,
-  getAllEasyChores,
-  getAllMediumChores,
-  getAllHardChores,
-  getAllBonusChores,
-  postChoresTracker,
-} from "../Endpoints";
+    getAllChores,
+    getAllEasyChores,
+    getAllMediumChores,
+    getAllHardChores,
+    getAllBonusChores,
+    addChore,
+} from "../../../Endpoints";
 import { useEffect, useState } from "react";
+import useAuth from "../../../hooks/useAuth";
 
-export default function Chores() {
+const Chores = () => {
   const [allChoresData, setAllChoresData] = useState([]);
   const [allEasyChoresData, setAllEasyChoresData] = useState([]);
   const [allMediumChoresData, setAllMediumChoresData] = useState([]);
   const [allHardChoresData, setAllHardChoresData] = useState([]);
   const [allBonusChoresData, setAllBonusChoresData] = useState([]);
-  const { addToCart } = useCart();
+  const { user } = useAuth();
 
   useEffect(() => {
     async function fetchData() {
@@ -41,11 +42,11 @@ export default function Chores() {
     fetchData();
   }, []);
 
-  function submitChore(e, chore, choreDate) {
+  async function submitChore(e, chorePk, choreDate) {
     e.preventDefault();
-    const newChore = { chore: chore, day: choreDate };
-    addToCart(newChore);
-    console.log(`Chore added ${JSON.stringify(newChore)}`);
+    const resp = await addChore(user.auth_token, chorePk, choreDate);
+    console.log(`Resp ${JSON.stringify(resp)}`);
+    console.log(`Chore added`);
   }
 
   return (
@@ -60,7 +61,7 @@ export default function Chores() {
                 <Button
                   href=""
                   onClick={(e) => {
-                    submitChore(e, item);
+                    submitChore(e, item.pk, new Date().toISOString());
                   }}
                 >
                   Add
@@ -77,7 +78,7 @@ export default function Chores() {
               <Button
                 href=""
                 onClick={(e) => {
-                  submitChore(e, item);
+                    submitChore(e, item.pk, new Date().toISOString());
                 }}
                 >
                   Add
@@ -95,7 +96,7 @@ export default function Chores() {
               <Button
                 href=""
                 onClick={(e) => {
-                  submitChore(e, item);
+                    submitChore(e, item.pk, new Date().toISOString());
                 }}
                 >
                   Add
@@ -108,3 +109,5 @@ export default function Chores() {
     </Page>
   );
 }
+
+export default Chores;

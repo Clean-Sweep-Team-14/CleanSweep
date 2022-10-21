@@ -16,16 +16,15 @@ const urls = {
   choresTracker: () => `${apiRoot}/chores/tracker/`,
 };
 
-const formatAuthedHeader = (token) => ({
-  headers: {
-    Authorization: `token ${token}`,
-  },
-});
+const formatAuthedHeader = (token) => ({Authorization: `Token ${token}`});
 
 const login = async (body) => {
   return axios.post(urls.login(), body);
 };
 
+const register = async (body) => {
+  return axios.post(urls.register(), body);
+};
 
 const logout = async (token) => {
   return axios.post(urls.logout(), "", {
@@ -35,45 +34,43 @@ const logout = async (token) => {
   });
 };
 
-const getAllChores = async (limit = 20) => {
-  return axios.get(urls.listAllChores(), { limit: limit });
+const getAllChores = async (limit = 100) => {
+  return axios.get(urls.listAllChores(), { params: {limit: limit }});
 };
 
 const getAllEasyChores = async (limit = 100) => {
-  return axios.get(urls.listAllEasyChores(), { limit: limit });
+  return axios.get(urls.listAllEasyChores(), { params: {limit: limit }});
 };
 
 const getAllMediumChores = async (limit = 100) => {
-  return axios.get(urls.listAllMediumChores(), { limit: limit });
+  return axios.get(urls.listAllMediumChores(), { params: {limit: limit }});
 };
 
 const getAllHardChores = async (limit = 100) => {
-  return axios.get(urls.listAllHardChores(), { limit: limit });
+  return axios.get(urls.listAllHardChores(), { params: {limit: limit }});
 };
 
 const getAllBonusChores = async () => {
   return axios.get(urls.listAllBonusChores());
 };
 
-const postChoresTracker = async (chorePk) => {
-  return axios.post(urls.choresTracker(), { pk: chorePk });
-};
-
-const getChoresTracker = async (chorePk) => {
-  return axios.post(urls.choresTracker(), { pk: chorePk });
-};
-
-const getListGlobalLeaderboard = async (limit = 20) => {
-  return axios.get(urls.listGlobalLeaders(), { limit: limit });
+const getListGlobalLeaderboard = async (limit = 100) => {
+  return axios.get(urls.listGlobalLeaders(), { params: {limit: limit }});
 };
 
 const getListFriendLeaderboard = async (token) => {
   const authedHeader = formatAuthedHeader(token);
-  return axios.get(urls.listFriendLeaders(), authedHeader);
+  return axios.get(urls.listFriendLeaders(), {headers: authedHeader});
 };
+
+const addChore = async (token, chore, day) => {
+  const authedHeader = formatAuthedHeader(token);
+  return axios.post(urls.choresTracker(), {chore, day}, {headers: authedHeader})
+}
 
 export {
   login,
+  register,
   logout,
   urls,
   getAllChores,
@@ -83,6 +80,5 @@ export {
   getAllBonusChores,
   getListGlobalLeaderboard,
   getListFriendLeaderboard,
-  getChoresTracker,
-  postChoresTracker,
+  addChore,
 };
