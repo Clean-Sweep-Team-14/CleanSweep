@@ -57,8 +57,8 @@ const Chores = () => {
           leaders={allEasyChoresData.map((item) => {
             return (
               <>
-                {item.chore}{" "}
-                <Button
+                <h5 className="text-center ">{item.chore}{""}</h5>
+                <Button className="d-flex justify-content-center"
                   href=""
                   onClick={(e) => {
                     submitChore(e, item.pk, new Date().toISOString());
@@ -74,8 +74,8 @@ const Chores = () => {
           title="Medium (25 points)"
           leaders={allMediumChoresData.map((item) => {return (
             <>
-              {item.chore}{" "}
-              <Button
+              <h5 className="text-center ">{item.chore}{""}</h5>
+              <Button className="d-flex justify-content-center"
                 href=""
                 onClick={(e) => {
                     submitChore(e, item.pk, new Date().toISOString());
@@ -92,8 +92,8 @@ const Chores = () => {
           title="Hard (100 points)"
           leaders={allHardChoresData.map((item) => {return (
             <>
-              {item.chore}{" "}
-              <Button
+              <h5 className="text-center ">{item.chore}{""}</h5>
+              <Button className="d-flex justify-content-center"
                 href=""
                 onClick={(e) => {
                     submitChore(e, item.pk, new Date().toISOString());
