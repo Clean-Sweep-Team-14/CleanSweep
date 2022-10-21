@@ -21,7 +21,7 @@ class CustomUser(AbstractUser):
 
 
     def point_deduction(self):
-        late_chores_points=[tracker.chore.point for tracker in self.choretrackers.all() if tracker.completed==False and tracker.is_late]
+        late_chores_points=[tracker.chore.point for tracker in self.choretrackers.all() if tracker.is_late]
         negative_points = sum(late_chores_points)
         return negative_points
 
@@ -70,13 +70,13 @@ class Chore_Tracker(models.Model):
 
     @property
     def is_late(self):
-        return pytz.utc.localize(datetime.datetime.today()) > self.due_date and self.completed==False
+        return pytz.utc.localize(datetime.datetime.today()) > self.due_date
     
 
 
 
     def __str__(self):
-        return f'{self.chore} on {self.due_date}'
+        return f'{self.chore} on {self.due_date} late:{self.is_late}'
 
 
 class Follow(models.Model):
