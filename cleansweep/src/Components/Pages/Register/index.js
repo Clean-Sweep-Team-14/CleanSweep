@@ -48,7 +48,7 @@ const Register = () => {
         </Row>
         <Row>
           <Col>
-            <p>Already have an account? {' '}<a href='/login'>Login then you fucking bitch</a></p>
+            <p>Already have an account? {' '}<a href='/login'>Login!</a></p>
           </Col>
         </Row>
       </Page>
