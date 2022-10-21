@@ -70,10 +70,8 @@ class Chore_Tracker(models.Model):
 
     @property
     def is_late(self):
-        return pytz.utc.localize(datetime.datetime.today()) > self.due_date
+        return pytz.utc.localize(datetime.datetime.today()) > self.due_date and self.completed==False
     
-
-
 
     def __str__(self):
         return f'{self.chore} on {self.due_date} late:{self.is_late}'
