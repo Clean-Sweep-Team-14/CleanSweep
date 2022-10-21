@@ -5,15 +5,16 @@ import { BrowserRouter, Routes, Route, Navigate, Switch } from "react-router-dom
 import axios from "axios";
 
 //components
-import Leaderboards from "./Components/LeaderBoards";
-import Home from "./Components/Home";
+import LeaderBoards from "./Components/Pages/LeaderBoards";
 import Header from "./Components/Header";
-import Chores from "./Components/Chores";
-import useAuth, { AuthProvider } from "./hooks/useAuth";
+import Chores from "./Components/Pages/Chores";
 import Login from "./Components/Pages/Login";
 import { CartProvider } from "./hooks/useCart";
-import Cart from "./Components/Pages/MyChores";
+import MyChores from "./Components/Pages/MyChores";
 import Register from "./Components/Pages/Register";
+
+// hooks
+import useAuth, { AuthProvider } from "./hooks/useAuth";
 
 const AuthenticatedRoute = ({ children }) => {
   const { user } = useAuth();
@@ -25,14 +26,21 @@ const AuthenticatedRoute = ({ children }) => {
 
 const Router = () => (
   <Routes>
-    <Route path="/" element={<Home />} />
+    <Route
+      path="/"
+      element={
+        <AuthenticatedRoute>
+            <LeaderBoards />
+        </AuthenticatedRoute>
+      }
+    />
     <Route path="/login" element={<Login />} />
     <Route path="/register" element={<Register />} />
     <Route
       path="/leaderboards"
       element={
         <AuthenticatedRoute>
-          <Leaderboards />
+          <LeaderBoards />
         </AuthenticatedRoute>
       }
     />
@@ -45,10 +53,10 @@ const Router = () => (
       }
     />
     <Route
-      path="/cart"
+      path="/mychores"
       element={
         <AuthenticatedRoute>
-          <Cart />
+          <MyChores />
         </AuthenticatedRoute>
       }
     />
