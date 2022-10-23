@@ -10,7 +10,7 @@ import Header from "./Components/Header";
 import Chores from "./Components/Pages/Chores";
 import Login from "./Components/Pages/Login";
 import { CartProvider } from "./hooks/useCart";
-import MyChores from "./Components/Pages/MyChores";
+import ListChores from "./Components/Pages/MyChores";
 import Register from "./Components/Pages/Register";
 
 // hooks
@@ -52,14 +52,14 @@ const Router = () => (
         </AuthenticatedRoute>
       }
     />
-    <Route
+    {/* <Route
       path="/mychores"
       element={
         <AuthenticatedRoute>
-          <MyChores />
+          <ListChores />
         </AuthenticatedRoute>
       }
-    />
+    /> */}
   </Routes>
 );
 const App = () => (

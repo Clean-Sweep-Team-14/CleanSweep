@@ -5,17 +5,20 @@ import { useLocalStorage } from "./useLocalStorage";
 
 const CartContext = createContext();
 
+export default function useCart() {
+  return useContext(CartContext);
+}
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   // const scopedCart = {...cart}
   // const formattedChore = {"chore" : chore.pk, "day" : 0}
   // scopedCart[chore.pk] = formattedChore
-  const addToCart = (chore, choreDay) => {
+  const addToCart = (chore, due_date) => {
     let scopedCart = [...cart];
     console.log(`scopedCart is ${JSON.stringify(scopedCart)}`);
     const formattedChore = {
       chore: chore,
-      day: choreDay,
+      day: due_date,
     };
     console.log(`formattedChore is ${JSON.stringify(formattedChore)}`);
     scopedCart = [...scopedCart, formattedChore];
@@ -25,18 +28,11 @@ export const CartProvider = ({ children }) => {
 
 
   const memoedValue = useMemo(
-    () => ({
-      cart,
-      addToCart,
+    () => ({cart, addToCart
     }),
-    [cart]
   );
 
   return (
     <CartContext.Provider value={memoedValue}>{children}</CartContext.Provider>
   );
 };
-
-export default function useCart() {
-  return useContext(CartContext);
-}

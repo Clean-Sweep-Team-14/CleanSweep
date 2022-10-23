@@ -38,6 +38,10 @@ const getAllChores = async (limit = 100) => {
   return axios.get(urls.listAllChores(), { params: {limit: limit }});
 };
 
+const getSelectedChores = async (limit = 100) => {
+  return axios.get(urls.choresTracker(), { params: {limit: limit }});
+};
+
 const getAllEasyChores = async (limit = 100) => {
   return axios.get(urls.listAllEasyChores(), { params: {limit: limit }});
 };
@@ -68,6 +72,11 @@ const addChore = async (token, chore, day) => {
   return axios.post(urls.choresTracker(), {chore, day}, {headers: authedHeader})
 }
 
+const getChores = async (token, chore, day) => {
+  const authedHeader = formatAuthedHeader(token);
+  return axios.get(urls.choresTracker(), {chore, day}, {headers: authedHeader})
+}
+
 export {
   login,
   register,
@@ -81,4 +90,5 @@ export {
   getListGlobalLeaderboard,
   getListFriendLeaderboard,
   addChore,
+  getChores,
 };
