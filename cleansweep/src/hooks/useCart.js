@@ -15,7 +15,7 @@ export const CartProvider = ({ children }) => {
     console.log(`scopedCart is ${JSON.stringify(scopedCart)}`);
     const formattedChore = {
       chore: chore,
-      day: choreDay,
+      due_date: choreDay,
     };
     console.log(`formattedChore is ${JSON.stringify(formattedChore)}`);
     scopedCart = [...scopedCart, formattedChore];
