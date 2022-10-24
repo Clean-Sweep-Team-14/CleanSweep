@@ -1,3 +1,4 @@
+from asyncore import read
 from dataclasses import fields
 from rest_framework import serializers
 from .models import Chore, Chore_Tracker, CustomUser, Follow
@@ -14,6 +15,7 @@ class ChoreSerializer(serializers.ModelSerializer):
 
 class ChoreTrackerSerializer(serializers.ModelSerializer):
     user = serializers.SlugRelatedField(slug_field='username', read_only=True)
+    chore = ChoreSerializer(read_only=True)
 
     class Meta:
         model = Chore_Tracker
