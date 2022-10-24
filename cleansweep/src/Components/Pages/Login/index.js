@@ -1,33 +1,51 @@
 import useAuth from "../../../hooks/useAuth";
+import {Button, Row, Col, Form} from "react-bootstrap";
 import Register from "../Register";
+import Page from "../../Page"
+import {useState} from "react";
 
 const Login = () => {
   const { login, loading } = useAuth();
+  const [validated, setValidated] = useState(false);
+  const [username, setUsername] = useState()
+  const [password, setPassword] = useState()
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const formData = new FormData(e.currentTarget);
-
-    login(formData.get("username"), formData.get("password"));
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.stopPropagation();
+    } else {
+      login(username, password);
+    }
+    setValidated(true);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Login</h1>
-
-      <label>
-        Username
-        <input name="username" />
-      </label>
-
-      <label>
-        Password
-        <input type="password" name="password" />
-      </label>
-
-      <button disabled={loading}>Submit</button>
-    </form>
+      <Page title="Login">
+        <Row>
+          <Form noValidate validated={validated} onSubmit={handleSubmit}>
+            <Form.Group className="mb-3" controlId="username">
+              <Form.Label>Username</Form.Label>
+              <Form.Control required type="username" placeholder="Enter username"
+                            onChange={e => setUsername(e.target.value)} />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="password">
+              <Form.Label>Password</Form.Label>
+              <Form.Control required type="password" placeholder="Password"
+                            onChange={e => setPassword(e.target.value)}/>
+            </Form.Group>
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+          </Form>
+        </Row>
+        <Row>
+          <Col>
+            <p>Don't have an account yet?{' '}<a href='/register'>Register</a></p>
+          </Col>
+        </Row>
+      </Page>
   );
 };
 

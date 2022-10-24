@@ -31,7 +31,28 @@ export const AuthProvider = ({ children }) => {
         };
 
         setUser(userData);
-        navigate("/Chores");
+        navigate("/");
+      }
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+    }
+  };
+
+  const register = async (username, email, password) => {
+    const body = {
+      username,
+      email,
+      password,
+    };
+    setLoading(true);
+    try {
+      const response = await apiEndpoints.register(body);
+      setLoading(false);
+
+      if (response.status === 201) {
+        console.log(`Account created for ${username}, logging in...`)
+        await login(username, password);
       }
     } catch (err) {
       console.log(err);
@@ -41,7 +62,7 @@ export const AuthProvider = ({ children }) => {
 
   const loggedOut = () => {
     setUser(null);
-    navigate("/Chores", { replace: true });
+    navigate("/", { replace: true });
   };
 
   const memoedValue = useMemo(
@@ -49,6 +70,7 @@ export const AuthProvider = ({ children }) => {
       user,
       loading,
       login,
+      register,
       loggedOut
     }),
     [user, loading]

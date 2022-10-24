@@ -8,7 +8,7 @@ from rest_framework import generics
 
 from .tasks import send_email_task, send_test_email
 from .models import Chore, Chore_Tracker, CustomUser, Follow
-from .serializers import ChoreSerializer, ChoreTrackerSerializer, FollowSerializer, UserPointsSerializer
+from .serializers import ChoreSerializer, ChoreTrackerSerializer, FollowSerializer, UserPointsSerializer, TrackerCreateSerializer
 from django.db.models import Sum, Q
 from rest_framework.views import APIView
 from django.http import HttpResponse
@@ -60,6 +60,11 @@ class ChoreTracker(generics.ListCreateAPIView):
     def get_queryset(self):
         queryset = Chore_Tracker.objects.filter(user=self.request.user.pk, completed=False).order_by('due_date')
         return queryset
+
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return TrackerCreateSerializer
+        return self.serializer_class
 
 
 class ChoreTrackerUpdate(generics.RetrieveUpdateDestroyAPIView):

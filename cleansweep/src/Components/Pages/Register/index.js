@@ -1,114 +1,58 @@
 import { useState } from "react";
+import useAuth from "../../../hooks/useAuth";
+import Page from "../../Page";
+import {Button, Col, Form, Row} from "react-bootstrap";
+import {register} from "../../../Endpoints";
 
-export default function Register() {
-  // States for registration
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const Register = () => {
+  const { register, loading } = useAuth();
+  const [validated, setValidated] = useState(false);
+  const [username, setUsername] = useState()
+  const [password, setPassword] = useState()
+  const [email, setEmail] = useState()
 
-  // States for checking the errors
-  const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState(false);
-
-  // Handling the name change
-  const handleName = (e) => {
-    setName(e.target.value);
-    setSubmitted(false);
-  };
-
-  // Handling the email change
-  const handleEmail = (e) => {
-    setEmail(e.target.value);
-    setSubmitted(false);
-  };
-
-  // Handling the password change
-  const handlePassword = (e) => {
-    setPassword(e.target.value);
-    setSubmitted(false);
-  };
-
-  // Handling the form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (name === "" || email === "" || password === "") {
-      setError(true);
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.stopPropagation();
     } else {
-      setSubmitted(true);
-      setError(false);
+      register(username, email, password);
     }
-  };
-
-  // Showing success message
-  const successMessage = () => {
-    return (
-      <div
-        className="success"
-        style={{
-          display: submitted ? "" : "none",
-        }}
-      >
-        <h1>User {name} successfully registered!!</h1>
-      </div>
-    );
-  };
-
-  // Showing error message if error is true
-  const errorMessage = () => {
-    return (
-      <div
-        className="error"
-        style={{
-          display: error ? "" : "none",
-        }}
-      >
-        <h1>Please enter all the fields</h1>
-      </div>
-    );
+    setValidated(true);
   };
 
   return (
-    <div className="form">
-      <div>
-        <h1>Registration</h1>
-      </div>
-
-      {/* Calling to the methods */}
-      <div className="messages">
-        {errorMessage()}
-        {successMessage()}
-      </div>
-
-      <form>
-        {/* Labels and inputs for form data */}
-        <label className="label">Name</label>
-        <input
-          onChange={handleName}
-          className="input"
-          value={name}
-          type="text"
-        />
-
-        <label className="label">Email</label>
-        <input
-          onChange={handleEmail}
-          className="input"
-          value={email}
-          type="email"
-        />
-
-        <label className="label">Password</label>
-        <input
-          onChange={handlePassword}
-          className="input"
-          value={password}
-          type="password"
-        />
-
-        <button onClick={handleSubmit} type="submit">
-          Submit
-        </button>
-      </form>
-    </div>
+      <Page title="Register">
+        <Row>
+          <Form noValidate validated={validated} onSubmit={handleSubmit}>
+            <Form.Group className="mb-3" controlId="username">
+              <Form.Label>Username</Form.Label>
+              <Form.Control required type="username" placeholder="Enter username"
+                            onChange={e => setUsername(e.target.value)} />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="email">
+              <Form.Label>Email</Form.Label>
+              <Form.Control required type="email" placeholder="Enter email"
+                            onChange={e => setEmail(e.target.value)} />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="password">
+              <Form.Label>Password</Form.Label>
+              <Form.Control required type="password" placeholder="Password"
+                            onChange={e => setPassword(e.target.value)}/>
+            </Form.Group>
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+          </Form>
+        </Row>
+        <Row>
+          <Col>
+            <p>Already have an account? {' '}<a href='/login'>Login!</a></p>
+          </Col>
+        </Row>
+      </Page>
   );
-}
+};
+
+export default Register;

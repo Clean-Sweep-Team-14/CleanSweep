@@ -2,26 +2,27 @@ import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import React from "react";
 
-import Page from "./Page";
-import useCart from "../hooks/useCart";
-import LeaderBoardColumn from "./LeaderBoardColumn";
+import Page from "../../Page";
+import useCart from "../../../hooks/useCart";
+import LeaderBoardColumn from "../../LeaderBoardColumn";
 import {
   getAllChores,
   getAllEasyChores,
   getAllMediumChores,
   getAllHardChores,
   getAllBonusChores,
-  postChoresTracker,
-} from "../Endpoints";
+  addChore,
+} from "../../../Endpoints";
 import { useEffect, useState } from "react";
+import useAuth from "../../../hooks/useAuth";
 
-export default function Chores() {
+const Chores = () => {
   const [allChoresData, setAllChoresData] = useState([]);
   const [allEasyChoresData, setAllEasyChoresData] = useState([]);
   const [allMediumChoresData, setAllMediumChoresData] = useState([]);
   const [allHardChoresData, setAllHardChoresData] = useState([]);
   const [allBonusChoresData, setAllBonusChoresData] = useState([]);
-  const { addToCart } = useCart();
+  const { user } = useAuth();
 
   useEffect(() => {
     async function fetchData() {
@@ -41,11 +42,11 @@ export default function Chores() {
     fetchData();
   }, []);
 
-  function submitChore(e, chore, choreDate) {
+  async function SubmitChore(e, chorePk, choreDate) {
     e.preventDefault();
-    const newChore = { chore: chore, day: choreDate };
-    addToCart(newChore);
-    console.log(`Chore added ${JSON.stringify(newChore)}`);
+    const resp = await addChore(user.auth_token, chorePk, choreDate);
+    console.log(`Resp ${JSON.stringify(resp)}`);
+    console.log(`Chore added`);
   }
 
   return (
@@ -56,11 +57,15 @@ export default function Chores() {
           leaders={allEasyChoresData.map((item) => {
             return (
               <>
-                {item.chore}{" "}
+                <h5 className="text-center ">
+                  {item.chore}
+                  {""}
+                </h5>
                 <Button
+                  className="d-flex justify-content-center"
                   href=""
                   onClick={(e) => {
-                    submitChore(e, item);
+                    SubmitChore(e, item.pk, new Date().toISOString());
                   }}
                 >
                   Add
@@ -71,32 +76,41 @@ export default function Chores() {
         />
         <LeaderBoardColumn
           title="Medium (25 points)"
-          leaders={allMediumChoresData.map((item) => {return (
-            <>
-              {item.chore}{" "}
-              <Button
-                href=""
-                onClick={(e) => {
-                  submitChore(e, item);
-                }}
+          leaders={allMediumChoresData.map((item) => {
+            return (
+              <>
+                <h5 className="text-center ">
+                  {item.chore}
+                  {""}
+                </h5>
+                <Button
+                  className="d-flex justify-content-center"
+                  href=""
+                  onClick={(e) => {
+                    SubmitChore(e, item.pk, new Date().toISOString());
+                  }}
                 >
                   Add
                 </Button>
               </>
             );
           })}
-          
         />
         <LeaderBoardColumn
           title="Hard (100 points)"
-          leaders={allHardChoresData.map((item) => {return (
-            <>
-              {item.chore}{" "}
-              <Button
-                href=""
-                onClick={(e) => {
-                  submitChore(e, item);
-                }}
+          leaders={allHardChoresData.map((item) => {
+            return (
+              <>
+                <h5 className="text-center ">
+                  {item.chore}
+                  {""}
+                </h5>
+                <Button
+                  className="d-flex justify-content-center"
+                  href=""
+                  onClick={(e) => {
+                    SubmitChore(e, item.pk, new Date().toISOString());
+                  }}
                 >
                   Add
                 </Button>
@@ -107,4 +121,6 @@ export default function Chores() {
       </Row>
     </Page>
   );
-}
+};
+
+export default Chores;
