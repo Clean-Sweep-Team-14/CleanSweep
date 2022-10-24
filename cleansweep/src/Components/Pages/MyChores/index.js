@@ -25,9 +25,9 @@ const MyChores = () => {
     fetchData();
   }, []);
 
-  async function onClickDeleteChore(e, chorePk) {
+  async function onClickDeleteChore(e) {
     e.preventDefault();
-    const resp = await deleteChore(user.auth_token, chorePk);
+    const resp = await deleteChore(user.auth_token);
     console.log(`Resp ${JSON.stringify(resp)}`);
     console.log(`Chore deleted`);
   }
@@ -35,11 +35,11 @@ const MyChores = () => {
   async function onClickCompleteChore(
     e,
     pk,
-    chorePk,
+    
     day = new Date().toISOString()
   ) {
     e.preventDefault();
-    const resp = await completeChore(user.auth_token, chorePk, day);
+    const resp = await completeChore(user.auth_token, pk);
     console.log(`Resp ${JSON.stringify(resp)}`);
     console.log(`Chore completed`);
   }
@@ -53,13 +53,13 @@ const MyChores = () => {
             return (
               <Row>
                 <Col>
-                  {item.chore} {item.due_date}
+                  {item.chore.chore} {item.due_date}
                 </Col>
                 <Col>
                   <Button
-                    className="d-flex justify-content-center"
+                    className="justify-content-center"
                     onClick={(e) => {
-                      onClickCompleteChore(e, item.pk, item.chore);
+                      onClickCompleteChore(e, item.pk);
                       console.log(JSON.stringify(item));
                     }}
                   >

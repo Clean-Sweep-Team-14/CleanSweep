@@ -38,13 +38,6 @@ const LeaderBoards = () => {
             .map((item) => `${item.username} ${item.actual_points}`)
             }
         />
-        <LeaderBoardColumn
-          title="Friends"
-          leaders={allFriendsLeadersData
-            .sort((a, b) => (a.actual_points < b.actual_points ? 1 : -1))
-            .map((item) => `${item.username} ${item.actual_points}`)
-            }
-        />
       </Row>
     </Page>
   );
