@@ -6,12 +6,12 @@ import Page from "../../Page";
 import useCart from "../../../hooks/useCart";
 import LeaderBoardColumn from "../../LeaderBoardColumn";
 import {
-    getAllChores,
-    getAllEasyChores,
-    getAllMediumChores,
-    getAllHardChores,
-    getAllBonusChores,
-    addChore,
+  getAllChores,
+  getAllEasyChores,
+  getAllMediumChores,
+  getAllHardChores,
+  getAllBonusChores,
+  addChore,
 } from "../../../Endpoints";
 import { useEffect, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
@@ -42,7 +42,7 @@ const Chores = () => {
     fetchData();
   }, []);
 
-  async function submitChore(e, chorePk, choreDate) {
+  async function SubmitChore(e, chorePk, choreDate) {
     e.preventDefault();
     const resp = await addChore(user.auth_token, chorePk, choreDate);
     console.log(`Resp ${JSON.stringify(resp)}`);
@@ -57,11 +57,15 @@ const Chores = () => {
           leaders={allEasyChoresData.map((item) => {
             return (
               <>
-                <h5 className="text-center ">{item.chore}{""}</h5>
-                <Button className="d-flex justify-content-center"
+                <h5 className="text-center ">
+                  {item.chore}
+                  {""}
+                </h5>
+                <Button
+                  className="d-flex justify-content-center"
                   href=""
                   onClick={(e) => {
-                    submitChore(e, item.pk, new Date().toISOString());
+                    SubmitChore(e, item.pk, new Date().toISOString());
                   }}
                 >
                   Add
@@ -72,32 +76,41 @@ const Chores = () => {
         />
         <LeaderBoardColumn
           title="Medium (25 points)"
-          leaders={allMediumChoresData.map((item) => {return (
-            <>
-              <h5 className="text-center ">{item.chore}{""}</h5>
-              <Button className="d-flex justify-content-center"
-                href=""
-                onClick={(e) => {
-                    submitChore(e, item.pk, new Date().toISOString());
-                }}
+          leaders={allMediumChoresData.map((item) => {
+            return (
+              <>
+                <h5 className="text-center ">
+                  {item.chore}
+                  {""}
+                </h5>
+                <Button
+                  className="d-flex justify-content-center"
+                  href=""
+                  onClick={(e) => {
+                    SubmitChore(e, item.pk, new Date().toISOString());
+                  }}
                 >
                   Add
                 </Button>
               </>
             );
           })}
-          
         />
         <LeaderBoardColumn
           title="Hard (100 points)"
-          leaders={allHardChoresData.map((item) => {return (
-            <>
-              <h5 className="text-center ">{item.chore}{""}</h5>
-              <Button className="d-flex justify-content-center"
-                href=""
-                onClick={(e) => {
-                    submitChore(e, item.pk, new Date().toISOString());
-                }}
+          leaders={allHardChoresData.map((item) => {
+            return (
+              <>
+                <h5 className="text-center ">
+                  {item.chore}
+                  {""}
+                </h5>
+                <Button
+                  className="d-flex justify-content-center"
+                  href=""
+                  onClick={(e) => {
+                    SubmitChore(e, item.pk, new Date().toISOString());
+                  }}
                 >
                   Add
                 </Button>
@@ -108,6 +121,6 @@ const Chores = () => {
       </Row>
     </Page>
   );
-}
+};
 
 export default Chores;
