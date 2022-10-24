@@ -21,6 +21,12 @@ class ChoreTrackerSerializer(serializers.ModelSerializer):
         model = Chore_Tracker
         fields = ('chore', 'due_date', 'completed', 'user', 'pk', 'is_late')
 
+class TrackerCreateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model=Chore_Tracker
+        fields = ('chore',)
+
 
 class FollowSerializer(serializers.ModelSerializer):
     
