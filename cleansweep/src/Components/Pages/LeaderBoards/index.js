@@ -14,6 +14,7 @@ const LeaderBoards = () => {
   const { user } = useAuth();
   const [allGlobalLeadersData, setAllGlobalLeadersData] = useState([]);
   const [allFriendsLeadersData, setAllFriendsLeadersData] = useState([]);
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -28,19 +29,19 @@ const LeaderBoards = () => {
     }
     fetchData();
   }, []);
+
   return (
-    <Page title="Leaderboards">
+    <Page title="Leaderboards" totalPoints={user.totalPoints}>
       <Row>
         <LeaderBoardColumn
           title="Global"
           leaders={allGlobalLeadersData
             .sort((a, b) => (a.actual_points < b.actual_points ? 1 : -1))
-            .map((item) => `${item.username} ${item.actual_points}`)
-            }
+            .map((item) => `${item.username} ${item.actual_points}`)}
         />
       </Row>
     </Page>
   );
-}
+};
 
 export default LeaderBoards;

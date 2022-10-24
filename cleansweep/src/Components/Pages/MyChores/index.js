@@ -10,54 +10,68 @@ import { useEffect } from "react";
 import LeaderBoardColumn from "../../LeaderBoardColumn";
 
 const MyChores = () => {
-  const { user } = useAuth();
+  const { user, fetchUserData } = useAuth();
   const [myChores, setMyChores] = useState([]);
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await getChores(user.auth_token);
-        setMyChores(response.data.results);
-      } catch (e) {
-        console.log("There was a problem." + e);
-      }
-    }
     fetchData();
   }, []);
 
-  async function onClickDeleteChore(e) {
-    e.preventDefault();
-    const resp = await deleteChore(user.auth_token);
-    console.log(`Resp ${JSON.stringify(resp)}`);
-    console.log(`Chore deleted`);
+  async function fetchData() {
+    try {
+      const response = await getChores(user.auth_token);
+      setMyChores(response.data.results);
+    } catch (e) {
+      console.log("There was a problem." + e);
+    }
   }
 
-  async function onClickCompleteChore(
-    e,
-    pk,
-    
-    day = new Date().toISOString()
-  ) {
+  async function onClickDeleteChore(e, pk) {
+    e.preventDefault();
+    const resp = await deleteChore(user.auth_token, pk);
+    fetchData();
+  }
+
+  async function onClickCompleteChore(e, pk, day = new Date().toISOString()) {
     e.preventDefault();
     const resp = await completeChore(user.auth_token, pk);
-    console.log(`Resp ${JSON.stringify(resp)}`);
-    console.log(`Chore completed`);
+    fetchUserData();
+    fetchData();
   }
 
+  const formatDate = (date) => {
+    const newDate = new Date(date);
+    return newDate.toString().substring(0, 21);
+  };
+
+  const checkIfChoreIsLate = (date) => {
+    const currentDate = new Date();
+    const choreDate = new Date(date);
+
+    return choreDate < currentDate;
+  };
+
   return (
-    <Page title="My Chores">
+    <Page title="My Chores" totalPoints={user.totalPoints}>
       <Row>
         <LeaderBoardColumn
           title="Chores"
           leaders={myChores.map((item) => {
             return (
-              <Row>
+              <Row
+                key={item.chore.pk}
+                className={
+                  checkIfChoreIsLate(item.due_date) ? "bg-danger" : null
+                }
+              >
                 <Col>
-                  {item.chore.chore} {item.due_date}
+                  {item.chore.chore} : {formatDate(item.due_date)}
                 </Col>
                 <Col>
                   <Button
-                    className="justify-content-center"
+                    className={`justify-content-center ${
+                      checkIfChoreIsLate(item.due_date) ? "disabled" : null
+                    }`}
                     onClick={(e) => {
                       onClickCompleteChore(e, item.pk);
                       console.log(JSON.stringify(item));

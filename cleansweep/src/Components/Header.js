@@ -15,7 +15,7 @@ export default function Header(props) {
         <Navbar.Brand href="/">CleanSweep</Navbar.Brand>
         <Nav className="me-auto">
           <LinkContainer to="/Chores">
-            <Nav.Link>Add Chores</Nav.Link>
+            <Nav.Link>Available Chores</Nav.Link>
           </LinkContainer>
           <LinkContainer to="/MyChores">
             <Nav.Link>My Chores</Nav.Link>

@@ -50,22 +50,22 @@ const Chores = () => {
   }
 
   return (
-    <Page title="Available chores">
+    <Page title="Available Chores" totalPoints={user.totalPoints}>
       <Row>
         <LeaderBoardColumn
           title="Easy (5 points)"
           leaders={allEasyChoresData.map((item) => {
             return (
               <>
-                <h5 className="text-center ">
+                <h6 className="text-center">
                   {item.chore}
                   {""}
-                </h5>
+                </h6>
                 <Button
-                  className="d-flex justify-content-center"
+                  className="justify-content-center"
                   href=""
                   onClick={(e) => {
-                    SubmitChore(e, item.pk, new Date().toISOString());
+                    SubmitChore(e, item.pk);
                   }}
                 >
                   Add
@@ -79,12 +79,12 @@ const Chores = () => {
           leaders={allMediumChoresData.map((item) => {
             return (
               <>
-                <h5 className="text-center ">
+                <h6 className="text-center ">
                   {item.chore}
                   {""}
-                </h5>
+                </h6>
                 <Button
-                  className="d-flex justify-content-center"
+                  className="justify-content-center"
                   href=""
                   onClick={(e) => {
                     SubmitChore(e, item.pk, new Date().toISOString());
@@ -101,12 +101,12 @@ const Chores = () => {
           leaders={allHardChoresData.map((item) => {
             return (
               <>
-                <h5 className="text-center ">
+                <h6 className="text-center ">
                   {item.chore}
                   {""}
-                </h5>
+                </h6>
                 <Button
-                  className="d-flex justify-content-center"
+                  className="justify-content-center"
                   href=""
                   onClick={(e) => {
                     SubmitChore(e, item.pk, new Date().toISOString());
