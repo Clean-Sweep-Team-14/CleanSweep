@@ -50,14 +50,14 @@ const Chores = () => {
   }
 
   return (
-    <Page title="Available chores" totalPoints={user.totalPoints}>
+    <Page title="Available Chores" totalPoints={user.totalPoints}>
       <Row>
         <LeaderBoardColumn
           title="Easy (5 points)"
           leaders={allEasyChoresData.map((item) => {
             return (
               <>
-                <h6 className="text-center ">
+                <h6 className="text-center">
                   {item.chore}
                   {""}
                 </h6>
