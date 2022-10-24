@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as apiEndpoints from "../Endpoints";
 import { useLocalStorage } from "./useLocalStorage";
@@ -10,6 +10,9 @@ export const AuthProvider = ({ children }) => {
 
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  useEffect(() => {
+    fetchUserData();
+  }, []);
 
   const login = async (username, password) => {
     const body = {
@@ -24,17 +27,34 @@ export const AuthProvider = ({ children }) => {
       setLoading(false);
 
       if (response.status === 200) {
-
         const userData = {
           username,
           auth_token: response.data.auth_token,
         };
 
         setUser(userData);
-        navigate("/");
+        navigate("/chores");
       }
     } catch (err) {
       console.log(err);
+      setLoading(false);
+    }
+  };
+
+  const fetchUserData = async () => {
+    setLoading(true);
+    try {
+      const response = await apiEndpoints.getListGlobalLeaderboard();
+      setLoading(false);
+      if (response.status === 200 && user) {
+        const userData = response.data.results.find(
+          (data) => data.username === user.username
+        );
+        const updatedUser = { ...user, totalPoints: userData.actual_points };
+        setUser(updatedUser);
+      }
+    } catch (error) {
+      console.log(error);
       setLoading(false);
     }
   };
@@ -51,7 +71,7 @@ export const AuthProvider = ({ children }) => {
       setLoading(false);
 
       if (response.status === 201) {
-        console.log(`Account created for ${username}, logging in...`)
+        console.log(`Account created for ${username}, logging in...`);
         await login(username, password);
       }
     } catch (err) {
@@ -71,7 +91,8 @@ export const AuthProvider = ({ children }) => {
       loading,
       login,
       register,
-      loggedOut
+      loggedOut,
+      fetchUserData,
     }),
     [user, loading]
   );
