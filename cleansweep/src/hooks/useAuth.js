@@ -11,9 +11,8 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
-    if (!user) return;
     fetchUserData();
-  }, [user]);
+  }, []);
 
   const login = async (username, password) => {
     const body = {
@@ -93,6 +92,7 @@ export const AuthProvider = ({ children }) => {
       login,
       register,
       loggedOut,
+      fetchUserData,
     }),
     [user, loading]
   );
