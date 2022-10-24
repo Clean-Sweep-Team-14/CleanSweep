@@ -72,10 +72,20 @@ const addChore = async (token, chore, day) => {
   return axios.post(urls.choresTracker(), {chore, day}, {headers: authedHeader})
 }
 
-const getChores = async (token, chore, day) => {
+const getChores = async (token, limit = 100) => {
   const authedHeader = formatAuthedHeader(token);
-  return axios.get(urls.choresTracker(), {chore, day}, {headers: authedHeader})
+  return axios.get(urls.choresTracker(), {headers: authedHeader, params: {limit: limit }})
 }
+
+const deleteChore = async (token, pk) => {
+  const authedHeader = formatAuthedHeader(token);
+  return axios.delete(urls.choresTracker() + `${pk}`, {headers: authedHeader})
+}
+
+const completeChore = async (token, pk, chore, day, completed = true) => {
+  const authedHeader = formatAuthedHeader(token);
+  return axios.put(urls.choresTracker() + `${pk}/`, {chore, day, completed}, {headers: authedHeader})
+} 
 
 export {
   login,
@@ -91,4 +101,6 @@ export {
   getListFriendLeaderboard,
   addChore,
   getChores,
+  deleteChore,
+  completeChore,
 };
