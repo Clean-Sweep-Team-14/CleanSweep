@@ -11,7 +11,7 @@ import Chores from "./Components/Pages/Chores";
 // import { index } from "./Components/Pages/MyChores";
 import Login from "./Components/Pages/Login";
 import { CartProvider } from "./hooks/useCart";
-
+import MyChores from './Components/Pages/MyChores';
 import Register from "./Components/Pages/Register";
 
 // hooks

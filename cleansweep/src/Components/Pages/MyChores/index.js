@@ -99,3 +99,4 @@ const MyChores = () => {
   );
 };
 
+export default MyChores;
