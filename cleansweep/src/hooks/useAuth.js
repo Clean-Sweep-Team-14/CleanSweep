@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }) => {
         };
 
         setUser(userData);
-        navigate("/");
+        navigate("/chores");
       }
     } catch (err) {
       console.log(err);
