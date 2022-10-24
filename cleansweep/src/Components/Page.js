@@ -10,9 +10,9 @@ export default function Page(props) {
   return (
     <Container className="p-3">
       <h1>{props.title} </h1>
-      {/* <h2 className="text-end">
-        My Total Points { `${item.actual_points}`}
-      </h2> */}
+      <h2 className="text-end">
+        My Total Points {`${props.totalPoints || 0}`}
+      </h2>
       <hr />
       {props.children}
     </Container>

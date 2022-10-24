@@ -32,11 +32,7 @@ const MyChores = () => {
     console.log(`Chore deleted`);
   }
 
-  async function onClickCompleteChore(
-    e,
-    pk,
-    day = new Date().toISOString()
-  ) {
+  async function onClickCompleteChore(e, pk, day = new Date().toISOString()) {
     e.preventDefault();
     const resp = await completeChore(user.auth_token, pk);
     console.log(`Resp ${JSON.stringify(resp)}`);
@@ -44,7 +40,7 @@ const MyChores = () => {
   }
 
   return (
-    <Page title="My Chores">
+    <Page title="My Chores" totalPoints={user.totalPoints}>
       <Row>
         <LeaderBoardColumn
           title="Chores"

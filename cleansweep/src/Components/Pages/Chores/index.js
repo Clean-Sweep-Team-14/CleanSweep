@@ -50,7 +50,7 @@ const Chores = () => {
   }
 
   return (
-    <Page title="Available chores">
+    <Page title="Available chores" totalPoints={user.totalPoints}>
       <Row>
         <LeaderBoardColumn
           title="Easy (5 points)"
