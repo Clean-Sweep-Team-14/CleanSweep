@@ -1,3 +1,4 @@
+from curses import savetty
 from email.policy import default
 from secrets import choice
 from django.db import models
@@ -19,9 +20,8 @@ class CustomUser(AbstractUser):
         positive_points = sum(chores_points)
         return positive_points
 
-
     def point_deduction(self):
-        late_chores_points=[tracker.chore.point for tracker in self.choretrackers.all() if tracker.completed==False and tracker.is_late]
+        late_chores_points=[tracker.chore.point for tracker in self.choretrackers.all() if tracker.is_late]
         negative_points = sum(late_chores_points)
         return negative_points
 
@@ -65,18 +65,22 @@ class Chore_Tracker(models.Model):
     chore = models.ForeignKey(Chore, on_delete=models.CASCADE, related_name = 'choretrackers')
     due_date = models.DateTimeField(default=get_due_date)
     completed = models.BooleanField(default = False)
+    completed_at = models.DateTimeField(null=True, blank=True) 
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name = 'choretrackers')
 
 
+    def save(self, *args, **kwargs):
+        if self.completed == True and self.completed_at is None:
+            self.completed_at = pytz.utc.localize(datetime.datetime.now())
+        super().save(*args, **kwargs)
+
     @property
     def is_late(self):
-        return pytz.utc.localize(datetime.datetime.today()) > self.due_date and self.completed==False
+        return pytz.utc.localize(datetime.datetime.today()) > self.due_date and (not self.completed_at or self.completed_at > self.due_date)
     
 
-
-
     def __str__(self):
-        return f'{self.chore} on {self.due_date}'
+        return f'{self.chore} on {self.due_date} late:{self.is_late}'
 
 
 class Follow(models.Model):
