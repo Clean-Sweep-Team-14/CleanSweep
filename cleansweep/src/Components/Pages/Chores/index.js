@@ -1,6 +1,7 @@
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import React from "react";
+import fetchData from '../LeaderBoards/index'
 
 import Page from "../../Page";
 import useCart from "../../../hooks/useCart";
@@ -44,9 +45,8 @@ const Chores = () => {
 
   async function SubmitChore(e, chorePk, choreDate) {
     e.preventDefault();
+    fetchData();
     const resp = await addChore(user.auth_token, chorePk, choreDate);
-    console.log(`Resp ${JSON.stringify(resp)}`);
-    console.log(`Chore added`);
   }
 
   return (
