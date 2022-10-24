@@ -65,7 +65,7 @@ const Chores = () => {
                   className="justify-content-center"
                   href=""
                   onClick={(e) => {
-                    SubmitChore(e, item.pk, new Date().toISOString());
+                    SubmitChore(e, item.pk);
                   }}
                 >
                   Add

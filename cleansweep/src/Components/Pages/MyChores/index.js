@@ -25,9 +25,9 @@ const MyChores = () => {
     fetchData();
   }, []);
 
-  async function onClickDeleteChore(e) {
+  async function onClickDeleteChore(e, pk) {
     e.preventDefault();
-    const resp = await deleteChore(user.auth_token);
+    const resp = await deleteChore(user.auth_token, pk);
     console.log(`Resp ${JSON.stringify(resp)}`);
     console.log(`Chore deleted`);
   }
@@ -35,7 +35,6 @@ const MyChores = () => {
   async function onClickCompleteChore(
     e,
     pk,
-    
     day = new Date().toISOString()
   ) {
     e.preventDefault();
