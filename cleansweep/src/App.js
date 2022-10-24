@@ -8,9 +8,10 @@ import axios from "axios";
 import LeaderBoards from "./Components/Pages/LeaderBoards";
 import Header from "./Components/Header";
 import Chores from "./Components/Pages/Chores";
+// import { index } from "./Components/Pages/MyChores";
 import Login from "./Components/Pages/Login";
 import { CartProvider } from "./hooks/useCart";
-import ListChores from "./Components/Pages/MyChores";
+
 import Register from "./Components/Pages/Register";
 
 // hooks
@@ -52,14 +53,14 @@ const Router = () => (
         </AuthenticatedRoute>
       }
     />
-    {/* <Route
+    <Route
       path="/mychores"
       element={
         <AuthenticatedRoute>
-          <ListChores />
+          <index />
         </AuthenticatedRoute>
       }
-    /> */}
+    />
   </Routes>
 );
 const App = () => (
