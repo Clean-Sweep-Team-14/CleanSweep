@@ -13,6 +13,8 @@ h1 {
 #leaderBoard > *{
   border-left-color: green;
   border-right-color: green;
+  border-right-width: 3px;
+  border-left-width: 3px;
 }
 
 #leaderBoard > *:first-child{
@@ -21,12 +23,27 @@ h1 {
   font-size: 200%;
 }
 
+#leaderBoard > *:first-child>:first-child::before{
+  content: '🥇';
+  margin-right: 1em;
+}
+
 #leaderBoard > *:nth-child(2){
   font-size: 165%;
 }
 
+#leaderBoard > *:nth-child(2)>:first-child::before{
+  content: '🥈';
+  margin-right: 1em;
+}
+
 #leaderBoard > *:nth-child(3){
   font-size: 130%;
+}
+
+#leaderBoard > *:nth-child(3)>:first-child::before{
+  content: '🥉';
+  margin-right: 1em;
 }
 
 #leaderBoard > *:last-child{
