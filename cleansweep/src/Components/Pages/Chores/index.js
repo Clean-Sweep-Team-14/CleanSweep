@@ -3,6 +3,8 @@ import Button from "react-bootstrap/Button";
 import React from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CheckIcon from "@mui/icons-material/Check";
+import ToggleButton from "@mui/material/ToggleButton";
 
 import Page from "../../Page";
 import useCart from "../../../hooks/useCart";
@@ -25,6 +27,8 @@ const Chores = () => {
   const [allHardChoresData, setAllHardChoresData] = useState([]);
   const [allBonusChoresData, setAllBonusChoresData] = useState([]);
   const { user } = useAuth();
+  const [selected, setSelected] = React.useState(false);
+  const [notSelected, setNotSelected] = React.useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -66,8 +70,8 @@ const Chores = () => {
             return (
               <>
                 <h5 className="text-center">
-                  {item.chore}
-                  {""}
+                  {/* {item.chore}
+                  {""} */}
                 </h5>
                 <Button
                   className="justify-content-center"
@@ -76,7 +80,7 @@ const Chores = () => {
                     SubmitChore(e, item.pk);
                   }}
                 >
-                  Add
+                  {item.chore}
                 </Button>
               </>
             );
@@ -92,13 +96,16 @@ const Chores = () => {
                   {""}
                 </h5>
                 <Button
+                  variant="outline-info"
                   className="justify-content-center"
+                  selected={selected}
                   href=""
                   onClick={(e) => {
                     SubmitChore(e, item.pk, new Date().toISOString());
+                    setSelected(!notSelected)
                   }}
                 >
-                  Add
+                  <CheckIcon />
                 </Button>
               </>
             );

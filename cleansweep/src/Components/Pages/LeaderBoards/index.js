@@ -33,7 +33,7 @@ const LeaderBoards = () => {
   return (
     <Page title="Leaderboards" totalPoints={user.totalPoints}>
       <Row>
-        <LeaderBoardColumn
+        <LeaderBoardColumn as="ol" numbered
           title="Global"
           leaders={allGlobalLeadersData
             .sort((a, b) => (a.actual_points < b.actual_points ? 1 : -1))

@@ -21,7 +21,7 @@ export default function Header(props) {
             <Nav.Link>My Chores</Nav.Link>
           </LinkContainer>
           <LinkContainer to="/leaderboards">
-            <Nav.Link>Leaderboards</Nav.Link>
+            <Nav.Link>Leaderboard</Nav.Link>
           </LinkContainer>
         </Nav>
         <Navbar.Collapse className="justify-content-end">

@@ -73,7 +73,7 @@ const MyChores = () => {
               <Row
                 key={item.chore.pk}
                 className={
-                  checkIfChoreIsLate(item.due_date) ? "bg-danger" : null
+                  checkIfChoreIsLate(item.due_date) ? "alert alert-danger" : null
                 }
               >
                 <Col>
