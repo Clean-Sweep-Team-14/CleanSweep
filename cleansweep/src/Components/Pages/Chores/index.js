@@ -65,16 +65,15 @@ const Chores = () => {
           leaders={allEasyChoresData.map((item) => {
             return (
               <>
-                <h6 className="text-center">
+                <h5 className="text-center">
                   {item.chore}
                   {""}
-                </h6>
+                </h5>
                 <Button
                   className="justify-content-center"
                   href=""
                   onClick={(e) => {
                     SubmitChore(e, item.pk);
-                    notify(item.chore);
                   }}
                 >
                   Add
@@ -88,16 +87,15 @@ const Chores = () => {
           leaders={allMediumChoresData.map((item) => {
             return (
               <>
-                <h6 className="text-center ">
+                <h5 className="text-center ">
                   {item.chore}
                   {""}
-                </h6>
+                </h5>
                 <Button
                   className="justify-content-center"
                   href=""
                   onClick={(e) => {
                     SubmitChore(e, item.pk, new Date().toISOString());
-                    notify(item.chore);
                   }}
                 >
                   Add
@@ -111,16 +109,15 @@ const Chores = () => {
           leaders={allHardChoresData.map((item) => {
             return (
               <>
-                <h6 className="text-center ">
+                <h5 className="text-center ">
                   {item.chore}
                   {""}
-                </h6>
+                </h5>
                 <Button
                   className="justify-content-center"
                   href=""
                   onClick={(e) => {
                     SubmitChore(e, item.pk, new Date().toISOString());
-                    notify(item.chore);
                   }}
                 >
                   Add

@@ -67,7 +67,7 @@ const MyChores = () => {
     <Page title="My Chores" totalPoints={user.totalPoints}>
       <Row>
         <LeaderBoardColumn
-          title="Chores"
+          title=""
           leaders={myChores.map((item) => {
             return (
               <Row
