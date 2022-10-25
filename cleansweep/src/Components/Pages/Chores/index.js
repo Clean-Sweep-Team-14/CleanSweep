@@ -27,6 +27,7 @@ const Chores = () => {
   const [allHardChoresData, setAllHardChoresData] = useState([]);
   const [allBonusChoresData, setAllBonusChoresData] = useState([]);
   const { user } = useAuth();
+  const [isActive, setIsActive] = useState([]);
 
 
   useEffect(() => {
@@ -49,7 +50,9 @@ const Chores = () => {
 
   async function SubmitChore(e, chorePk, choreDate) {
     e.preventDefault();
-
+    let activeArray = [...isActive, chorePk]
+    setIsActive(activeArray)
+    console.log(activeArray);
     const resp = await addChore(user.auth_token, chorePk, choreDate);
     console.log(`Resp ${JSON.stringify(resp)}`);
     console.log(`Chore added`);
@@ -77,7 +80,7 @@ const Chores = () => {
                 </h5>
                 <Button
                   variant="outline-success"
-                  className="justify-content-center"
+                  className={`${isActive.includes(item.pk) ? "active": ""}`}
                   onClick={(e) => {
                     SubmitChore(e, item.pk);
                   }}
@@ -99,7 +102,7 @@ const Chores = () => {
                 </h5>
                 <Button
                   variant="outline-success"
-                  className="justify-content-center"
+                  className={`${isActive.includes(item.pk) ? "active": ""}`}
                   href=""
                   onClick={(e) => {
                     SubmitChore(e, item.pk, new Date().toISOString());
@@ -122,7 +125,7 @@ const Chores = () => {
                 </h5>
                 <Button
                   variant="outline-success"
-                  className="justify-content-center"
+                  className={`${isActive.includes(item.pk) ? "active": ""}`}
                   href=""
                   onClick={(e) => {
                     SubmitChore(e, item.pk, new Date().toISOString());
