@@ -65,6 +65,7 @@ const MyChores = () => {
 
   return (
     <Page title="My Chores" totalPoints={user.totalPoints}>
+      <p style={{textAlign: "center", color: '#f44336'}}>Do your chores by the due date or you will lose points, ya filty animal!</p>
       <Row>
         <LeaderBoardColumn
           leaders={myChores.map((item) => {
