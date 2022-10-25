@@ -33,10 +33,9 @@ const LeaderBoards = () => {
   }, []);
 
   return (
-    <Page title="Leaderboards" totalPoints={user.totalPoints}>
+    <Page title="Leaderboard" totalPoints={user.totalPoints}>
       <Row>
         <LeaderBoardList
-          title="Global"
           leaders={allGlobalLeadersData
             .sort((a, b) => (a.actual_points < b.actual_points ? 1 : -1))
             .map((item) => `${item.username} ${item.actual_points}`)}
