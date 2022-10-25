@@ -13,12 +13,13 @@ h1 {
 #leaderBoard > *{
   border-left-color: green;
   border-right-color: green;
-  border-right-width: 3px;
-  border-left-width: 3px;
+  border-right-width: 5px;
+  border-left-width: 5px;
 }
 
 #leaderBoard > *:first-child{
   border-top-color: green;
+  border-top-width: 2px;
   font-weight: bold;
   font-size: 200%;
 }
@@ -48,4 +49,5 @@ h1 {
 
 #leaderBoard > *:last-child{
   border-bottom-color: green;
+  border-bottom-width: 2px;
 }

@@ -80,7 +80,7 @@ const MyChores = () => {
               >
                 <Col>
                   <div>{item.chore.chore}</div>
-                  <div>Due By: {formatDate(item.due_date)}</div>
+                  <div>Due By: {(item.due_date)}</div>
                 </Col>
                 <Col>
                   <Button
