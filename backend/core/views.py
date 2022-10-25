@@ -56,6 +56,7 @@ class ChoreTracker(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+        send_test_email()
 
     def get_queryset(self):
         queryset = Chore_Tracker.objects.filter(user=self.request.user.pk, completed=False).order_by('due_date')

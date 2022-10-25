@@ -10,7 +10,6 @@ import pytz
 
 
 
-
 class CustomUser(AbstractUser):
     
     avatar_picture = models.ImageField(upload_to = 'users', blank=True, null=True)
@@ -67,7 +66,6 @@ class Chore_Tracker(models.Model):
     completed = models.BooleanField(default = False)
     completed_at = models.DateTimeField(null=True, blank=True) 
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name = 'choretrackers')
-
 
     def save(self, *args, **kwargs):
         if self.completed == True and self.completed_at is None:

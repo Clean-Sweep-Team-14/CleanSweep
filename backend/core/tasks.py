@@ -6,6 +6,8 @@ from config.celery import app
 
 
 
+
+
 @shared_task
 def send_email_task():
     send_mail(
@@ -20,6 +22,6 @@ def send_test_email():
     send_mail(
         subject='CleanSweep',
         message='Welcome to CleanSweep!!!!',
-        from_email='',
-        recipient_list=['cleansweepupdates@gmail.com',]
+        from_email='cleansweepupdates@gmail.com',
+        recipient_list=['cleansweepupdates@gmail.com']
     )
