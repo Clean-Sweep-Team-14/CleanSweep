@@ -65,7 +65,9 @@ const MyChores = () => {
 
   return (
     <Page title="My Chores" totalPoints={user.totalPoints}>
-      <p style={{textAlign: "center", color: '#f44336'}}>Do your chores by the due date or you will lose points, ya filty animal!</p>
+      <p style={{ textAlign: "center", color: "#f44336" }}>
+        Do your chores by the due date or you will lose points, ya filty animal!
+      </p>
       <Row>
         <LeaderBoardColumn
           leaders={myChores.map((item) => {
@@ -73,11 +75,13 @@ const MyChores = () => {
               <Row
                 key={item.chore.pk}
                 className={
-                  checkIfChoreIsLate(item.due_date) ? "alert alert-danger" : null
+                  checkIfChoreIsLate(item.due_date)
+                    ? "alert alert-danger"
+                    : null
                 }
               >
                 <Col>
-                  {item.chore.chore} Due By: {(item.due_date)}
+                  {item.chore.chore} Due By: {item.due_date}
                 </Col>
                 <Col>
                   <Button
@@ -85,7 +89,6 @@ const MyChores = () => {
                     onClick={(e) => {
                       onClickCompleteChore(e, item.pk);
                       notifySuccess(item.chore.chore);
-                      console.log(JSON.stringify(item));
                     }}
                   >
                     Complete
@@ -93,8 +96,8 @@ const MyChores = () => {
                 </Col>
                 <Col>
                   <Button
-                    className={`justify-content-center ${
-                      checkIfChoreIsLate(item.due_date) ? "disabled" : null
+                    className={` ${
+                      checkIfChoreIsLate(item.due_date) ? "invisible" : null
                     }`}
                     onClick={(e) => {
                       onClickDeleteChore(e, item.pk);

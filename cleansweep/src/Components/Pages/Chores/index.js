@@ -27,8 +27,7 @@ const Chores = () => {
   const [allHardChoresData, setAllHardChoresData] = useState([]);
   const [allBonusChoresData, setAllBonusChoresData] = useState([]);
   const { user } = useAuth();
-  const [selected, setSelected] = React.useState(false);
-  const [notSelected, setNotSelected] = React.useState(false);
+
 
   useEffect(() => {
     async function fetchData() {
@@ -61,9 +60,11 @@ const Chores = () => {
     console.log(chore);
   };
 
+ 
+
   return (
     <Page title="Available Chores" totalPoints={user.totalPoints}>
-      <p style={{textAlign: "center"}}>Select chores to add to your list!</p>
+      <p style={{ textAlign: "center" }}>Select chores to add to your list!</p>
       <Row>
         <LeaderBoardColumn
           title="Easy (5 points)"
@@ -71,17 +72,17 @@ const Chores = () => {
             return (
               <>
                 <h5 className="text-center">
-                  {/* {item.chore}
-                  {""} */}
+                  {item.chore}
+                  {""}
                 </h5>
                 <Button
+                  variant="outline-info"
                   className="justify-content-center"
-                  href=""
                   onClick={(e) => {
                     SubmitChore(e, item.pk);
                   }}
                 >
-                  {item.chore}
+                  <CheckIcon />
                 </Button>
               </>
             );
@@ -99,11 +100,9 @@ const Chores = () => {
                 <Button
                   variant="outline-info"
                   className="justify-content-center"
-                  selected={selected}
                   href=""
                   onClick={(e) => {
                     SubmitChore(e, item.pk, new Date().toISOString());
-                    setSelected(!notSelected)
                   }}
                 >
                   <CheckIcon />
@@ -122,13 +121,14 @@ const Chores = () => {
                   {""}
                 </h5>
                 <Button
+                  variant="outline-info"
                   className="justify-content-center"
                   href=""
                   onClick={(e) => {
                     SubmitChore(e, item.pk, new Date().toISOString());
                   }}
                 >
-                  Add
+                  <CheckIcon />
                 </Button>
               </>
             );
