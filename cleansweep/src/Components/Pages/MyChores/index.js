@@ -84,6 +84,7 @@ const MyChores = () => {
                 </Col>
                 <Col>
                   <Button
+                  variant="success"
                     className="justify-content-center"
                     onClick={(e) => {
                       onClickCompleteChore(e, item.pk);
@@ -95,6 +96,7 @@ const MyChores = () => {
                 </Col>
                 <Col>
                   <Button
+                  variant="danger"
                     className={` ${
                       checkIfChoreIsLate(item.due_date) ? "invisible" : null
                     }`}

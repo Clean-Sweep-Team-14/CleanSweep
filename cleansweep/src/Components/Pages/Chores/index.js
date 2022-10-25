@@ -76,7 +76,7 @@ const Chores = () => {
                   {""}
                 </h5>
                 <Button
-                  variant="outline-info"
+                  variant="outline-success"
                   className="justify-content-center"
                   onClick={(e) => {
                     SubmitChore(e, item.pk);
@@ -98,7 +98,7 @@ const Chores = () => {
                   {""}
                 </h5>
                 <Button
-                  variant="outline-info"
+                  variant="outline-success"
                   className="justify-content-center"
                   href=""
                   onClick={(e) => {
@@ -121,7 +121,7 @@ const Chores = () => {
                   {""}
                 </h5>
                 <Button
-                  variant="outline-info"
+                  variant="outline-success"
                   className="justify-content-center"
                   href=""
                   onClick={(e) => {
