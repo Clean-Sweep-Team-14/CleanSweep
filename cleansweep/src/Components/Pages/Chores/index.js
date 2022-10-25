@@ -1,7 +1,8 @@
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import React from "react";
-import fetchData from '../LeaderBoards/index'
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Page from "../../Page";
 import useCart from "../../../hooks/useCart";
@@ -45,9 +46,16 @@ const Chores = () => {
 
   async function SubmitChore(e, chorePk, choreDate) {
     e.preventDefault();
-    fetchData();
+
     const resp = await addChore(user.auth_token, chorePk, choreDate);
+    console.log(`Resp ${JSON.stringify(resp)}`);
+    console.log(`Chore added`);
   }
+
+  const notify = (chore) => {
+    toast.success(`${chore} added to My Chores!`);
+    console.log(chore);
+  };
 
   return (
     <Page title="Available Chores" totalPoints={user.totalPoints}>
@@ -66,6 +74,7 @@ const Chores = () => {
                   href=""
                   onClick={(e) => {
                     SubmitChore(e, item.pk);
+                    notify(item.chore);
                   }}
                 >
                   Add
@@ -88,6 +97,7 @@ const Chores = () => {
                   href=""
                   onClick={(e) => {
                     SubmitChore(e, item.pk, new Date().toISOString());
+                    notify(item.chore);
                   }}
                 >
                   Add
@@ -110,6 +120,7 @@ const Chores = () => {
                   href=""
                   onClick={(e) => {
                     SubmitChore(e, item.pk, new Date().toISOString());
+                    notify(item.chore);
                   }}
                 >
                   Add
@@ -119,6 +130,18 @@ const Chores = () => {
           })}
         />
       </Row>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable={false}
+        pauseOnHover={false}
+        theme="light"
+      />
     </Page>
   );
 };
