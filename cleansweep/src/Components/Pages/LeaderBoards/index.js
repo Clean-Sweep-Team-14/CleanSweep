@@ -1,47 +1,45 @@
-import Row from "react-bootstrap/Row";
+import Row from 'react-bootstrap/Row';
+import Page from '../../Page';
+import LeaderBoardColumn from '../../LeaderBoardColumn';
+import  { useState, useEffect }  from 'react';
+import { getListGlobalLeaderboard } from '../../../Endpoints';
+import useAuth from '../../../hooks/useAuth';
+import axios from 'axios';
+import TableComponent from 'react';
 
-import Page from "../../Page";
-import LeaderBoardColumn from "../../LeaderBoardColumn";
-import { useState } from "react";
-import { useEffect } from "react";
-import {
-  getListGlobalLeaderboard,
-  getListFriendLeaderboard,
-} from "../../../Endpoints";
-import useAuth from "../../../hooks/useAuth";
+// import "bootstrap/dist/css/bootstrap.min.css";
+
 
 const LeaderBoards = () => {
   const { user } = useAuth();
-  const [allGlobalLeadersData, setAllGlobalLeadersData] = useState([]);
-  const [allFriendsLeadersData, setAllFriendsLeadersData] = useState([]);
+  const [leaderData, setLeaderData] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [columns, setColumns] = useState([]);
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        let response = await getListGlobalLeaderboard();
-        setAllGlobalLeadersData(response.data.results);
+  const getLeaderData = async () => {
+    await axios.get("https://clean-sweep-team-14.herokuapp.com/leaderboard/global")
+    .then((resp)=> {
+    let leaderData = resp.results.results.sort((a, b) => 
+        (a.actual_points < b.actual_points ? 1 : -1)).map((item) => 
+        (`${item.username} ${item.actual_points}`));
+      let cols  = Object.keys(leaderData[0].map((results) => {
+        return {
+          Header: key.toUpperCase(),
+          accessor: key
+        };
+  }));
+  setUserData(results);
+  setColumns(cols);
+  setLoading(false);
+},
 
-        response = await getListFriendLeaderboard(user.auth_token);
-        setAllFriendsLeadersData(response.data.results);
-      } catch (e) {
-        console.log("There was a problem." + e);
-      }
-    }
-    fetchData();
-  }, []);
+  useEffect (() => {
+    setLoading(true);
+    getLeaderData();
+  }, []),
 
   return (
-    <Page title="Leaderboards" totalPoints={user.totalPoints}>
-      <Row>
-        <LeaderBoardColumn
-          title="Global"
-          leaders={allGlobalLeadersData
-            .sort((a, b) => (a.actual_points < b.actual_points ? 1 : -1))
-            .map((item) => `${item.username} ${item.actual_points}`)}
-        />
-      </Row>
-    </Page>
-  );
-};
+    <TableComponent columns={columns} userData={userData} />
+  )}
 
 export default LeaderBoards;
