@@ -60,7 +60,7 @@ const Chores = () => {
     console.log(chore);
   };
 
- 
+
 
   return (
     <Page title="Available Chores" totalPoints={user.totalPoints}>
