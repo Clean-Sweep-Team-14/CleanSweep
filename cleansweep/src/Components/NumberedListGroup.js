@@ -2,7 +2,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 
 export default function NumberedListGroup(props) {
   return (
-    <ListGroup
+    <ListGroup as='ol' numbered
       className="py-2"
       style={{ width: "80%", margin: "0 auto" }}
     >
