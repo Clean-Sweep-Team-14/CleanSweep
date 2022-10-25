@@ -42,7 +42,7 @@ const MyChores = () => {
   }
 
   const formatDate = (date) => {
-    const newDate = new Date(date);
+    const newDate = new Date(date).toLocaleDateString('en-us', { weekday:"long", month:"short", day:"numeric"}) ;;
     return newDate.toString().substring(0, 21);
   };
 
@@ -65,7 +65,7 @@ const MyChores = () => {
 
   return (
     <Page title="My Chores" totalPoints={user.totalPoints}>
-      <p style={{textAlign: "center", color: '#f44336'}}>Do your chores by the due date or you will lose points, ya filty animal!</p>
+      <p style={{textAlign: "center", color: '#f44336'}}>Do your chores by the due date or you will lose points, ya filthy animal!</p>
       <Row>
         <LeaderBoardColumn
           leaders={myChores.map((item) => {
@@ -77,7 +77,8 @@ const MyChores = () => {
                 }
               >
                 <Col>
-                  {item.chore.chore} Due By: {formatDate(item.due_date)}
+                  <div>{item.chore.chore}</div>
+                  <div>Due By: {formatDate(item.due_date)}</div>
                 </Col>
                 <Col>
                   <Button
