@@ -11,7 +11,7 @@ export default function Page(props) {
     <Container className="p-3">
       <h1>{props.title} </h1>
       <h2 className="text-end">
-        My Total Points {`${props.totalPoints || 0}`}
+        My Total Points: {`${props.totalPoints || 0}`}
       </h2>
       <hr />
       {props.children}

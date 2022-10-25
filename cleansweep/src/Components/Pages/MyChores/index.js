@@ -8,6 +8,8 @@ import { useState } from "react";
 import { getChores } from "../../../Endpoints";
 import { useEffect } from "react";
 import LeaderBoardColumn from "../../LeaderBoardColumn";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const MyChores = () => {
   const { user, fetchUserData } = useAuth();
@@ -51,6 +53,16 @@ const MyChores = () => {
     return choreDate < currentDate;
   };
 
+  const notifySuccess = (chore) => {
+    toast.success(`${chore} completed!`);
+    console.log(chore);
+  };
+
+  const deleteSuccess = (chore) => {
+    toast.info(`${chore} deleted!`);
+    console.log(chore);
+  };
+
   return (
     <Page title="My Chores" totalPoints={user.totalPoints}>
       <Row>
@@ -65,15 +77,14 @@ const MyChores = () => {
                 }
               >
                 <Col>
-                  {item.chore.chore} : {formatDate(item.due_date)}
+                  {item.chore.chore} Due By: {formatDate(item.due_date)}
                 </Col>
                 <Col>
                   <Button
-                    className={`justify-content-center ${
-                      checkIfChoreIsLate(item.due_date) ? "disabled" : null
-                    }`}
+                    className="justify-content-center"
                     onClick={(e) => {
                       onClickCompleteChore(e, item.pk);
+                      notifySuccess(item.chore.chore);
                       console.log(JSON.stringify(item));
                     }}
                   >
@@ -82,9 +93,12 @@ const MyChores = () => {
                 </Col>
                 <Col>
                   <Button
-                    className="d-flex justify-content-center"
+                    className={`justify-content-center ${
+                      checkIfChoreIsLate(item.due_date) ? "disabled" : null
+                    }`}
                     onClick={(e) => {
                       onClickDeleteChore(e, item.pk);
+                      deleteSuccess(item.chore.chore);
                     }}
                   >
                     Delete
@@ -95,6 +109,18 @@ const MyChores = () => {
           })}
         />
       </Row>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable={false}
+        pauseOnHover={false}
+        theme="light"
+      />
     </Page>
   );
 };

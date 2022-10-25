@@ -3,9 +3,11 @@ import {Button, Row, Col, Form} from "react-bootstrap";
 import Register from "../Register";
 import Page from "../../Page"
 import {useState} from "react";
+import {user} from '../../../hooks/useAuth'
 
 const Login = () => {
   const { login, loading } = useAuth();
+  const {user} = useAuth();
   const [validated, setValidated] = useState(false);
   const [username, setUsername] = useState()
   const [password, setPassword] = useState()
@@ -22,7 +24,7 @@ const Login = () => {
   };
 
   return (
-      <Page title="Login">
+      <Page title="Login" >
         <Row>
           <Form noValidate validated={validated} onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="username">
