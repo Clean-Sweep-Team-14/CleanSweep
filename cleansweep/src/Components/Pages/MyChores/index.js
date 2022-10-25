@@ -76,7 +76,7 @@ const MyChores = () => {
                 }
               >
                 <Col>
-                  {item.chore.chore} Due By: {formatDate(item.due_date)}
+                  {item.chore.chore} Due By: {(item.due_date)}
                 </Col>
                 <Col>
                   <Button
