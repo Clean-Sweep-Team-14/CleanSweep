@@ -3,6 +3,8 @@ import Button from "react-bootstrap/Button";
 import React from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CheckIcon from "@mui/icons-material/Check";
+import ToggleButton from "@mui/material/ToggleButton";
 
 import Page from "../../Page";
 import useCart from "../../../hooks/useCart";
@@ -25,6 +27,7 @@ const Chores = () => {
   const [allHardChoresData, setAllHardChoresData] = useState([]);
   const [allBonusChoresData, setAllBonusChoresData] = useState([]);
   const { user } = useAuth();
+
 
   useEffect(() => {
     async function fetchData() {
@@ -57,28 +60,29 @@ const Chores = () => {
     console.log(chore);
   };
 
+ 
+
   return (
     <Page title="Available Chores" totalPoints={user.totalPoints}>
-      <p style={{textAlign: "center"}}>Select chores to add to your list!</p>
+      <p style={{ textAlign: "center" }}>Select chores to add to your list!</p>
       <Row>
         <LeaderBoardColumn
           title="Easy (5 points)"
           leaders={allEasyChoresData.map((item) => {
             return (
               <>
-                <h6 className="text-center">
+                <h5 className="text-center">
                   {item.chore}
                   {""}
-                </h6>
+                </h5>
                 <Button
+                  variant="outline-success"
                   className="justify-content-center"
-                  href=""
                   onClick={(e) => {
                     SubmitChore(e, item.pk);
-                    notify(item.chore);
                   }}
                 >
-                  Add
+                  <CheckIcon />
                 </Button>
               </>
             );
@@ -89,19 +93,19 @@ const Chores = () => {
           leaders={allMediumChoresData.map((item) => {
             return (
               <>
-                <h6 className="text-center ">
+                <h5 className="text-center ">
                   {item.chore}
                   {""}
-                </h6>
+                </h5>
                 <Button
+                  variant="outline-success"
                   className="justify-content-center"
                   href=""
                   onClick={(e) => {
                     SubmitChore(e, item.pk, new Date().toISOString());
-                    notify(item.chore);
                   }}
                 >
-                  Add
+                  <CheckIcon />
                 </Button>
               </>
             );
@@ -112,19 +116,19 @@ const Chores = () => {
           leaders={allHardChoresData.map((item) => {
             return (
               <>
-                <h6 className="text-center ">
+                <h5 className="text-center ">
                   {item.chore}
                   {""}
-                </h6>
+                </h5>
                 <Button
+                  variant="outline-success"
                   className="justify-content-center"
                   href=""
                   onClick={(e) => {
                     SubmitChore(e, item.pk, new Date().toISOString());
-                    notify(item.chore);
                   }}
                 >
-                  Add
+                  <CheckIcon />
                 </Button>
               </>
             );

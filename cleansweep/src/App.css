@@ -1,7 +1,11 @@
 .display-2 {
-    margin-left: 10rem;
+  margin-left: 10rem;
 }
 
-.navbar {
-    background-color: light blue;
+h2 {
+  font-family: lobster;
+}
+
+h1 {
+  font-family: lobster;
 }

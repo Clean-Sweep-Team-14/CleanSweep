@@ -73,7 +73,9 @@ const MyChores = () => {
               <Row
                 key={item.chore.pk}
                 className={
-                  checkIfChoreIsLate(item.due_date) ? "bg-danger" : null
+                  checkIfChoreIsLate(item.due_date)
+                    ? "alert alert-danger"
+                    : null
                 }
               >
                 <Col>
@@ -82,11 +84,11 @@ const MyChores = () => {
                 </Col>
                 <Col>
                   <Button
+                  variant="success"
                     className="justify-content-center"
                     onClick={(e) => {
                       onClickCompleteChore(e, item.pk);
                       notifySuccess(item.chore.chore);
-                      console.log(JSON.stringify(item));
                     }}
                   >
                     Complete
@@ -94,8 +96,9 @@ const MyChores = () => {
                 </Col>
                 <Col>
                   <Button
-                    className={`justify-content-center ${
-                      checkIfChoreIsLate(item.due_date) ? "disabled" : null
+                  variant="danger"
+                    className={` ${
+                      checkIfChoreIsLate(item.due_date) ? "invisible" : null
                     }`}
                     onClick={(e) => {
                       onClickDeleteChore(e, item.pk);
