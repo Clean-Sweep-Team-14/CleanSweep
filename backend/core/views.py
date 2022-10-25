@@ -73,7 +73,7 @@ class ChoreTracker(generics.ListCreateAPIView):
             return super().create(request, *args, **kwargs)
         except IntegrityError:
             error_data = {
-                "error": "Unique constraint violation: This chore has already been selected."
+                "error": "This chore has already been added to your list."
             }
             return Response(error_data, status=status.HTTP_400_BAD_REQUEST)
 
