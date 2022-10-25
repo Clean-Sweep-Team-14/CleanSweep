@@ -42,7 +42,7 @@ const MyChores = () => {
   }
 
   const formatDate = (date) => {
-    const newDate = new Date(date).toLocaleDateString('en-us', { weekday:"long", month:"short", day:"numeric"}) ;;
+    const newDate = new Date(date).toLocaleDateString('en-us', { weekday:"long", month:"short", day:"numeric", timeZone:"UTC"});
     return newDate.toString().substring(0, 21);
   };
 
@@ -80,7 +80,7 @@ const MyChores = () => {
               >
                 <Col>
                   <div>{item.chore.chore}</div>
-                  <div>Due By: {(item.due_date)}</div>
+                  <div>Due By: {formatDate(item.due_date)}</div>
                 </Col>
                 <Col>
                   <Button
