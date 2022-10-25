@@ -9,3 +9,26 @@ h2 {
 h1 {
   font-family: lobster;
 }
+
+#leaderBoard > *{
+  border-left-color: green;
+  border-right-color: green;
+}
+
+#leaderBoard > *:first-child{
+  border-top-color: green;
+  font-weight: bold;
+  font-size: 200%;
+}
+
+#leaderBoard > *:nth-child(2){
+  font-size: 165%;
+}
+
+#leaderBoard > *:nth-child(3){
+  font-size: 130%;
+}
+
+#leaderBoard > *:last-child{
+  border-bottom-color: green;
+}
