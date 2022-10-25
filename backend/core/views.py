@@ -13,6 +13,8 @@ from django.db.models import Sum, Q
 from rest_framework.views import APIView
 from django.http import HttpResponse
 from django.core.mail import send_mail
+from django.db import IntegrityError
+from rest_framework import status
 
 # Create your views here.
 
@@ -66,6 +68,15 @@ class ChoreTracker(generics.ListCreateAPIView):
             return TrackerCreateSerializer
         return self.serializer_class
 
+    def create(self, request, *args, **kwargs):
+        try:
+            return super().create(request, *args, **kwargs)
+        except IntegrityError:
+            error_data = {
+                "error": "Unique constraint violation: This chore has already been selected."
+            }
+            return Response(error_data, status=status.HTTP_400_BAD_REQUEST)
+
 
 class ChoreTrackerUpdate(generics.RetrieveUpdateDestroyAPIView):
     queryset = Chore_Tracker.objects.all()
@@ -104,6 +115,15 @@ class FollowList(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(follower=self.request.user)
+
+    def create(self, request, *args, **kwargs):
+        try:
+            return super().create(request, *args, **kwargs)
+        except IntegrityError:
+            error_data = {
+                "error": "You are already following this user."
+            }
+            return Response(error_data, status=status.HTTP_400_BAD_REQUEST)
 
 
 class FollowDetail(generics.RetrieveDestroyAPIView):

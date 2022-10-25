@@ -10,7 +10,6 @@ import pytz
 
 
 
-
 class CustomUser(AbstractUser):
     
     avatar_picture = models.ImageField(upload_to = 'users', blank=True, null=True)
@@ -58,26 +57,30 @@ class Chore(models.Model):
 class Chore_Tracker(models.Model):
     
     def get_due_date():
-        now = pytz.utc.localize(datetime.datetime.today())
+        now = datetime.date.today()
         return now + datetime.timedelta(days=1)
 
 
     chore = models.ForeignKey(Chore, on_delete=models.CASCADE, related_name = 'choretrackers')
-    due_date = models.DateTimeField(default=get_due_date)
+    due_date = models.DateField(default=get_due_date)
     completed = models.BooleanField(default = False)
-    completed_at = models.DateTimeField(null=True, blank=True) 
+    completed_at = models.DateField(null=True, blank=True) 
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name = 'choretrackers')
 
+    
+    class Meta:
+        constraints = [
+            UniqueConstraint(fields=['user', 'chore', 'due_date'], name='unique_constraint')
+        ]
 
     def save(self, *args, **kwargs):
         if self.completed == True and self.completed_at is None:
-            self.completed_at = pytz.utc.localize(datetime.datetime.now())
+            self.completed_at = datetime.date.today()
         super().save(*args, **kwargs)
 
     @property
     def is_late(self):
-        return pytz.utc.localize(datetime.datetime.today()) > self.due_date and (not self.completed_at or self.completed_at > self.due_date)
-    
+        return datetime.date.today() > self.due_date and (not self.completed_at or self.completed_at > self.due_date)
 
     def __str__(self):
         return f'{self.chore} on {self.due_date} late:{self.is_late}'
