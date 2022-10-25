@@ -9,6 +9,8 @@ import {
   getListFriendLeaderboard,
 } from "../../../Endpoints";
 import useAuth from "../../../hooks/useAuth";
+import LeaderBoardList from "../../LeaderBoardNumbers";
+import LeaderBoardNumbers from "../../LeaderBoardList";
 
 const LeaderBoards = () => {
   const { user } = useAuth();
@@ -33,7 +35,7 @@ const LeaderBoards = () => {
   return (
     <Page title="Leaderboards" totalPoints={user.totalPoints}>
       <Row>
-        <LeaderBoardColumn
+        <LeaderBoardList
           title="Global"
           leaders={allGlobalLeadersData
             .sort((a, b) => (a.actual_points < b.actual_points ? 1 : -1))
