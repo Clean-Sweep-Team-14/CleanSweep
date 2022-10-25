@@ -4,6 +4,8 @@ import Register from "../Register";
 import Page from "../../Page";
 import { useState } from "react";
 import { user } from "../../../hooks/useAuth";
+import fetchUserData from '../../../hooks/useAuth'
+import fetchData from '../../../hooks/useAuth'
 
 const Login = () => {
   const { login, loading } = useAuth();
@@ -21,6 +23,8 @@ const Login = () => {
       login(username, password);
     }
     setValidated(true);
+    fetchUserData();
+    fetchData();
   };
 
   return (
