@@ -10,44 +10,44 @@ h1 {
   font-family: lobster;
 }
 
-#leaderBoard > *{
+#leaderBoard > * {
   border-left-color: green;
   border-right-color: green;
   border-right-width: 5px;
   border-left-width: 5px;
 }
 
-#leaderBoard > *:first-child{
+#leaderBoard > *:first-child {
   border-top-color: green;
   border-top-width: 2px;
   font-weight: bold;
   font-size: 200%;
 }
 
-#leaderBoard > *:first-child>:first-child::before{
-  content: '🥇';
+#leaderBoard > *:first-child > :first-child::before {
+  content: "🥇";
   margin-right: 1em;
 }
 
-#leaderBoard > *:nth-child(2){
+#leaderBoard > *:nth-child(2) {
   font-size: 165%;
 }
 
-#leaderBoard > *:nth-child(2)>:first-child::before{
-  content: '🥈';
+#leaderBoard > *:nth-child(2) > :first-child::before {
+  content: "🥈";
   margin-right: 1em;
 }
 
-#leaderBoard > *:nth-child(3){
+#leaderBoard > *:nth-child(3) {
   font-size: 130%;
 }
 
-#leaderBoard > *:nth-child(3)>:first-child::before{
-  content: '🥉';
+#leaderBoard > *:nth-child(3) > :first-child::before {
+  content: "🥉";
   margin-right: 1em;
 }
 
-#leaderBoard > *:last-child{
+#leaderBoard > *:last-child {
   border-bottom-color: green;
   border-bottom-width: 2px;
 }

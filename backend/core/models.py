@@ -9,32 +9,32 @@ import datetime
 import pytz
 
 
-
 class CustomUser(AbstractUser):
-    
-    avatar_picture = models.ImageField(upload_to = 'users', blank=True, null=True)
+
+    avatar_picture = models.ImageField(
+        upload_to='users', blank=True, null=True)
 
     def total_points(self):
-        chores_points=[tracker.chore.point for tracker in self.choretrackers.all() if tracker.completed==True and not tracker.is_late]
+        chores_points = [tracker.chore.point for tracker in self.choretrackers.all(
+        ) if tracker.completed == True and not tracker.is_late]
         positive_points = sum(chores_points)
         return positive_points
 
     def point_deduction(self):
-        late_chores_points=[tracker.chore.point for tracker in self.choretrackers.all() if tracker.is_late]
+        late_chores_points = [
+            tracker.chore.point for tracker in self.choretrackers.all() if tracker.is_late]
         negative_points = sum(late_chores_points)
         return negative_points
 
-
     def actual_points(self):
         return self.total_points() - self.point_deduction()
-
 
     def __str__(self):
         return self.username
 
 
 class Chore(models.Model):
-    
+
     EASY = 5
     MEDIUM = 25
     HARD = 100
@@ -53,24 +53,24 @@ class Chore(models.Model):
         return f'{self.chore}, {self.point} points'
 
 
-
 class Chore_Tracker(models.Model):
-    
+
     def get_due_date():
         now = datetime.date.today()
         return now + datetime.timedelta(days=1)
 
-
-    chore = models.ForeignKey(Chore, on_delete=models.CASCADE, related_name = 'choretrackers')
+    chore = models.ForeignKey(
+        Chore, on_delete=models.CASCADE, related_name='choretrackers')
     due_date = models.DateField(default=get_due_date)
-    completed = models.BooleanField(default = False)
-    completed_at = models.DateField(null=True, blank=True) 
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name = 'choretrackers')
+    completed = models.BooleanField(default=False)
+    completed_at = models.DateField(null=True, blank=True)
+    user = models.ForeignKey(
+        CustomUser, on_delete=models.CASCADE, related_name='choretrackers')
 
-    
     class Meta:
         constraints = [
-            UniqueConstraint(fields=['user', 'chore', 'due_date'], name='unique_constraint')
+            UniqueConstraint(
+                fields=['user', 'chore', 'due_date'], name='unique_constraint')
         ]
 
     def save(self, *args, **kwargs):
@@ -87,12 +87,13 @@ class Chore_Tracker(models.Model):
 
 
 class Follow(models.Model):
-    follower = models.ForeignKey(CustomUser,on_delete=models.CASCADE,related_name = 'follows')
-    friend = models.ForeignKey(CustomUser,on_delete=models.CASCADE, related_name = 'friends')
+    follower = models.ForeignKey(
+        CustomUser, on_delete=models.CASCADE, related_name='follows')
+    friend = models.ForeignKey(
+        CustomUser, on_delete=models.CASCADE, related_name='friends')
 
     class Meta:
         unique_together = ['follower', 'friend']
-
 
     def __str__(self):
         return f'{self.follower} following {self.friend}'
@@ -100,5 +101,7 @@ class Follow(models.Model):
 
 class Notification(models.Model):
     message: models.TextField()
-    chore = models.ForeignKey(Chore, on_delete=models.CASCADE, related_name = 'notifications')
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name = 'notifications')
+    chore = models.ForeignKey(
+        Chore, on_delete=models.CASCADE, related_name='notifications')
+    user = models.ForeignKey(
+        CustomUser, on_delete=models.CASCADE, related_name='notifications')
