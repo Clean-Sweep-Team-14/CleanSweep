@@ -11,6 +11,8 @@ import LeaderBoardColumn from "../../LeaderBoardColumn";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import JSConfetti from "js-confetti";
+import setUserPoints from '../../Page'
+import updatedUser from '../../Page'
 
 const jsConfetti = new JSConfetti();
 
@@ -26,6 +28,7 @@ function confettfy() {
 const MyChores = () => {
   const { user, fetchUserData } = useAuth();
   const [myChores, setMyChores] = useState([]);
+  const [refresh, setRefresh] = useState(1);
 
   useEffect(() => {
     fetchData();
@@ -49,10 +52,11 @@ const MyChores = () => {
   async function onClickCompleteChore(e, pk, day = new Date().toISOString()) {
     e.preventDefault();
     const resp = await completeChore(user.auth_token, pk);
+    setRefresh(refresh+1)
     fetchUserData();
     fetchData();
   }
-
+  
   const formatDate = (date) => {
     const newDate = new Date(date).toLocaleDateString("en-us", {
       weekday: "long",
@@ -84,7 +88,7 @@ const MyChores = () => {
   };
 
   return (
-    <Page title="My Chores" totalPoints={user.totalPoints}>
+    <Page title="My Chores" totalPoints={user.totalPoints} refresh={refresh}>
       <p style={{ textAlign: "center", color: "#f44336" }}>
         Do your chores by the due date or you will lose points, ya filthy
         animal!
@@ -110,9 +114,9 @@ const MyChores = () => {
                     variant="success"
                     className="justify-content-center"
                     onClick={(e) => {
+                      confettfy();
                       onClickCompleteChore(e, item.pk);
                       notifySuccess(item.chore.chore);
-                      confettfy();
                     }}
                   >
                     Complete
