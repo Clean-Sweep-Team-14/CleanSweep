@@ -34,6 +34,7 @@ const LeaderBoards = () => {
 
   return (
     <Page title="Leaderboard" totalPoints={user.totalPoints}>
+    <p style={{ textAlign: "center", color: '#f44336'}}>Behold! The cleanest in the land!</p>
       <Row>
         <LeaderBoardList
           leaders={allGlobalLeadersData
