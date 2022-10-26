@@ -10,6 +10,19 @@ import { useEffect } from "react";
 import LeaderBoardColumn from "../../LeaderBoardColumn";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import JSConfetti from 'js-confetti'
+
+
+const jsConfetti = new JSConfetti();
+
+function confettfy() {
+  jsConfetti.addConfetti({
+    emojis: ['🧼', '✨', '🫧', '🧹'],
+    confettiRadius: 8,
+    emojiSize: 75,
+    confettiNumber: 250,
+  });
+}
 
 const MyChores = () => {
   const { user, fetchUserData } = useAuth();
@@ -99,6 +112,7 @@ const MyChores = () => {
                     onClick={(e) => {
                       onClickCompleteChore(e, item.pk);
                       notifySuccess(item.chore.chore);
+                      confettfy();
                     }}
                   >
                     Complete
