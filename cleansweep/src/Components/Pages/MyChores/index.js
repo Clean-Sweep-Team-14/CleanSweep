@@ -42,7 +42,7 @@ const MyChores = () => {
   }
 
   const formatDate = (date) => {
-    const newDate = new Date(date).toLocaleDateString('en-us', { weekday:"long", month:"short", day:"numeric"}) ;;
+    const newDate = new Date(date).toLocaleDateString('en-us', { weekday:"long", month:"short", day:"numeric", timeZone:"UTC"});
     return newDate.toString().substring(0, 21);
   };
 

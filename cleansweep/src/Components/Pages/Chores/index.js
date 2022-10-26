@@ -63,11 +63,11 @@ const Chores = () => {
     console.log(chore);
   };
 
- 
+
 
   return (
     <Page title="Available Chores" totalPoints={user.totalPoints}>
-      <p style={{ textAlign: "center" }}>Select chores to add to your list!</p>
+      <p style={{ textAlign: "center", color: '#f44336'}}>Select chores to add to your list!</p>
       <Row>
         <LeaderBoardColumn
           title="Easy (5 points)"
