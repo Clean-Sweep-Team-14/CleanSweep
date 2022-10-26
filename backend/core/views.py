@@ -26,7 +26,7 @@ class ChoreList(generics.ListAPIView):
     def index(request):
         send_email_task()
         return HttpResponse('Email Sent')
-    
+
     def index(request):
         send_test_email()
         return HttpResponse('Email Sent')
@@ -60,7 +60,8 @@ class ChoreTracker(generics.ListCreateAPIView):
         serializer.save(user=self.request.user)
 
     def get_queryset(self):
-        queryset = Chore_Tracker.objects.filter(user=self.request.user.pk, completed=False).order_by('due_date')
+        queryset = Chore_Tracker.objects.filter(
+            user=self.request.user.pk, completed=False).order_by('due_date')
         return queryset
 
     def get_serializer_class(self):
@@ -88,7 +89,7 @@ class PointsList(APIView):
     def get(self, request, format=None):
         query_results = request.user.actual_points()
 
-        return Response({"actual_points":query_results})
+        return Response({"actual_points": query_results})
 
 
 class GlobalLeaderboard(generics.ListAPIView):
@@ -101,7 +102,8 @@ class FriendsLeaderboard(generics.ListAPIView):
     serializer_class = UserPointsSerializer
 
     def get_queryset(self):
-        queryset = CustomUser.objects.filter(Q(friends__in = self.request.user.follows.all()) | Q(pk=self.request.user.pk)).distinct('pk')
+        queryset = CustomUser.objects.filter(Q(friends__in=self.request.user.follows.all()) | Q(
+            pk=self.request.user.pk)).distinct('pk')
         return queryset
 
 
@@ -128,8 +130,7 @@ class FollowList(generics.ListCreateAPIView):
 
 class FollowDetail(generics.RetrieveDestroyAPIView):
     queryset = Follow.objects.all()
-    serializer_class = FollowSerializer  
-
+    serializer_class = FollowSerializer
 
 
 @api_view(['GET'])

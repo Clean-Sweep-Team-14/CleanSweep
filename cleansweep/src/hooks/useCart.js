@@ -23,7 +23,6 @@ export const CartProvider = ({ children }) => {
     setCart(scopedCart);
   };
 
-
   const memoedValue = useMemo(
     () => ({
       cart,

@@ -6,9 +6,9 @@ from .models import CustomUser, Chore, Chore_Tracker, Follow, Notification
 
 class CustomUserAdmin(UserAdmin):
     model = CustomUser
-    list_display = ['email', 'username',]
+    list_display = ['email', 'username', ]
 
-    
+
 admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(Chore)
 admin.site.register(Chore_Tracker)

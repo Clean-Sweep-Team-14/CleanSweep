@@ -29,7 +29,6 @@ const Chores = () => {
   const { user } = useAuth();
   const [isActive, setIsActive] = useState([]);
 
-
   useEffect(() => {
     async function fetchData() {
       try {
@@ -50,8 +49,8 @@ const Chores = () => {
 
   async function SubmitChore(e, chorePk, choreDate) {
     e.preventDefault();
-    let activeArray = [...isActive, chorePk]
-    setIsActive(activeArray)
+    let activeArray = [...isActive, chorePk];
+    setIsActive(activeArray);
     console.log(activeArray);
     const resp = await addChore(user.auth_token, chorePk, choreDate);
     console.log(`Resp ${JSON.stringify(resp)}`);
@@ -63,11 +62,11 @@ const Chores = () => {
     console.log(chore);
   };
 
-
-
   return (
     <Page title="Available Chores" totalPoints={user.totalPoints}>
-      <p style={{ textAlign: "center", color: '#f44336'}}>Select chores to add to your list!</p>
+      <p style={{ textAlign: "center", color: "#f44336" }}>
+        Select chores to add to your list!
+      </p>
       <Row>
         <LeaderBoardColumn
           title="Easy (5 points)"
@@ -80,7 +79,7 @@ const Chores = () => {
                 </h5>
                 <Button
                   variant="outline-success"
-                  className={`${isActive.includes(item.pk) ? "active": ""}`}
+                  className={`${isActive.includes(item.pk) ? "active" : ""}`}
                   onClick={(e) => {
                     SubmitChore(e, item.pk);
                   }}
@@ -102,7 +101,7 @@ const Chores = () => {
                 </h5>
                 <Button
                   variant="outline-success"
-                  className={`${isActive.includes(item.pk) ? "active": ""}`}
+                  className={`${isActive.includes(item.pk) ? "active" : ""}`}
                   href=""
                   onClick={(e) => {
                     SubmitChore(e, item.pk, new Date().toISOString());
@@ -125,7 +124,7 @@ const Chores = () => {
                 </h5>
                 <Button
                   variant="outline-success"
-                  className={`${isActive.includes(item.pk) ? "active": ""}`}
+                  className={`${isActive.includes(item.pk) ? "active" : ""}`}
                   href=""
                   onClick={(e) => {
                     SubmitChore(e, item.pk, new Date().toISOString());

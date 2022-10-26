@@ -16,7 +16,7 @@ const urls = {
   choresTracker: () => `${apiRoot}/chores/tracker/`,
 };
 
-const formatAuthedHeader = (token) => ({Authorization: `Token ${token}`});
+const formatAuthedHeader = (token) => ({ Authorization: `Token ${token}` });
 
 const login = async (body) => {
   return axios.post(urls.login(), body);
@@ -35,19 +35,19 @@ const logout = async (token) => {
 };
 
 const getAllChores = async (limit = 100) => {
-  return axios.get(urls.listAllChores(), { params: {limit: limit }});
+  return axios.get(urls.listAllChores(), { params: { limit: limit } });
 };
 
 const getAllEasyChores = async (limit = 100) => {
-  return axios.get(urls.listAllEasyChores(), { params: {limit: limit }});
+  return axios.get(urls.listAllEasyChores(), { params: { limit: limit } });
 };
 
 const getAllMediumChores = async (limit = 100) => {
-  return axios.get(urls.listAllMediumChores(), { params: {limit: limit }});
+  return axios.get(urls.listAllMediumChores(), { params: { limit: limit } });
 };
 
 const getAllHardChores = async (limit = 100) => {
-  return axios.get(urls.listAllHardChores(), { params: {limit: limit }});
+  return axios.get(urls.listAllHardChores(), { params: { limit: limit } });
 };
 
 const getAllBonusChores = async () => {
@@ -55,33 +55,46 @@ const getAllBonusChores = async () => {
 };
 
 const getListGlobalLeaderboard = async (limit = 100) => {
-  return axios.get(urls.listGlobalLeaders(), { params: {limit: limit }});
+  return axios.get(urls.listGlobalLeaders(), { params: { limit: limit } });
 };
 
 const getListFriendLeaderboard = async (token) => {
   const authedHeader = formatAuthedHeader(token);
-  return axios.get(urls.listFriendLeaders(), {headers: authedHeader});
+  return axios.get(urls.listFriendLeaders(), { headers: authedHeader });
 };
 
 const addChore = async (token, chore, day) => {
   const authedHeader = formatAuthedHeader(token);
-  return axios.post(urls.choresTracker(), {chore, day}, {headers: authedHeader})
-}
+  return axios.post(
+    urls.choresTracker(),
+    { chore, day },
+    { headers: authedHeader }
+  );
+};
 
 const getChores = async (token, limit = 100) => {
   const authedHeader = formatAuthedHeader(token);
-  return axios.get(urls.choresTracker(), {headers: authedHeader, params: {limit: limit }})
-}
+  return axios.get(urls.choresTracker(), {
+    headers: authedHeader,
+    params: { limit: limit },
+  });
+};
 
 const deleteChore = async (token, pk) => {
   const authedHeader = formatAuthedHeader(token);
-  return axios.delete(urls.choresTracker() + `${pk}`, {headers: authedHeader})
-}
+  return axios.delete(urls.choresTracker() + `${pk}`, {
+    headers: authedHeader,
+  });
+};
 
 const completeChore = async (token, pk, chore, day, completed = true) => {
   const authedHeader = formatAuthedHeader(token);
-  return axios.put(urls.choresTracker() + `${pk}/`, {chore, day, completed}, {headers: authedHeader})
-} 
+  return axios.put(
+    urls.choresTracker() + `${pk}/`,
+    { chore, day, completed },
+    { headers: authedHeader }
+  );
+};
 
 export {
   login,

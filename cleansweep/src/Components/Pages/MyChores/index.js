@@ -10,14 +10,13 @@ import { useEffect } from "react";
 import LeaderBoardColumn from "../../LeaderBoardColumn";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import JSConfetti from 'js-confetti'
-
+import JSConfetti from "js-confetti";
 
 const jsConfetti = new JSConfetti();
 
 function confettfy() {
   jsConfetti.addConfetti({
-    emojis: ['🧼', '✨', '🫧', '🧹'],
+    emojis: ["🧼", "✨", "🫧", "🧹"],
     confettiRadius: 8,
     emojiSize: 75,
     confettiNumber: 250,
@@ -72,7 +71,7 @@ const MyChores = () => {
       timeZone: "UTC",
     });
     let choreDate = new Date(formatDate(date));
-    choreDate.setDate(choreDate.getDate()+1)
+    choreDate.setDate(choreDate.getDate() + 1);
     return choreDate < new Date(currentDate);
   };
 
@@ -155,6 +154,5 @@ const MyChores = () => {
 };
 
 export default MyChores;
-
 
 ///notes

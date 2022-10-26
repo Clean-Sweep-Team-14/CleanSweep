@@ -1,7 +1,13 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
-import { BrowserRouter, Routes, Route, Navigate, Switch } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  Switch,
+} from "react-router-dom";
 import axios from "axios";
 
 //components
@@ -30,7 +36,7 @@ const Router = () => (
       path="/"
       element={
         <AuthenticatedRoute>
-            <LeaderBoards />
+          <LeaderBoards />
         </AuthenticatedRoute>
       }
     />
