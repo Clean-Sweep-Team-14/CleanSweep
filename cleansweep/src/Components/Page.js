@@ -13,7 +13,8 @@ export default function Page(props) {
     document.title = `${props.title} | CleanSweep`;
     window.scrollTo(0, 0);
     fetchUserData();
-  }, [props.title]);
+    console.log(props.refresh);
+  }, [props.title, props.refresh]);
 
   const fetchUserData = async () => {
     try {
