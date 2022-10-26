@@ -71,8 +71,9 @@ const MyChores = () => {
       day: "numeric",
       timeZone: "UTC",
     });
-    const choreDate = formatDate(date);
-    return choreDate < currentDate;
+    let choreDate = new Date(formatDate(date));
+    choreDate.setDate(choreDate.getDate()+1)
+    return choreDate < new Date(currentDate);
   };
 
   const notifySuccess = (chore) => {
@@ -154,3 +155,6 @@ const MyChores = () => {
 };
 
 export default MyChores;
+
+
+///notes
