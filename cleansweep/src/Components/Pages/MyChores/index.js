@@ -42,30 +42,40 @@ const MyChores = () => {
   }
 
   const formatDate = (date) => {
-    const newDate = new Date(date).toLocaleDateString('en-us', { weekday:"long", month:"short", day:"numeric", timeZone:"UTC"});
-    return newDate.toString().substring(0, 21);
+    const newDate = new Date(date).toLocaleDateString("en-us", {
+      weekday: "long",
+      month: "short",
+      day: "numeric",
+      timeZone: "UTC",
+    });
+    return newDate.toString();
   };
 
   const checkIfChoreIsLate = (date) => {
-    const currentDate = new Date();
-    const choreDate = new Date(date);
-
+    const currentDate = new Date().toLocaleDateString("en-us", {
+      weekday: "long",
+      month: "short",
+      day: "numeric",
+      timeZone: "UTC",
+    });
+    const choreDate = formatDate(date);
     return choreDate < currentDate;
   };
 
   const notifySuccess = (chore) => {
     toast.success(`${chore} completed!`);
-    console.log(chore);
   };
 
   const deleteSuccess = (chore) => {
     toast.info(`${chore} deleted!`);
-    console.log(chore);
   };
 
   return (
     <Page title="My Chores" totalPoints={user.totalPoints}>
-      <p style={{textAlign: "center", color: '#f44336'}}>Do your chores by the due date or you will lose points, ya filthy animal!</p>
+      <p style={{ textAlign: "center", color: "#f44336" }}>
+        Do your chores by the due date or you will lose points, ya filthy
+        animal!
+      </p>
       <Row>
         <LeaderBoardColumn
           leaders={myChores.map((item) => {
@@ -84,7 +94,7 @@ const MyChores = () => {
                 </Col>
                 <Col>
                   <Button
-                  variant="success"
+                    variant="success"
                     className="justify-content-center"
                     onClick={(e) => {
                       onClickCompleteChore(e, item.pk);
@@ -96,7 +106,7 @@ const MyChores = () => {
                 </Col>
                 <Col>
                   <Button
-                  variant="danger"
+                    variant="danger"
                     className={` ${
                       checkIfChoreIsLate(item.due_date) ? "invisible" : null
                     }`}
