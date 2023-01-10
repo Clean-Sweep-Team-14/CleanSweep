@@ -46,7 +46,6 @@ class HardChoreList(generics.ListAPIView):
     queryset = Chore.objects.filter(point=100)
     serializer_class = ChoreSerializer
 
-
 class BonusChoreList(generics.ListAPIView):
     queryset = Chore.objects.filter(point=30)
     serializer_class = ChoreSerializer
