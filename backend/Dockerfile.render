@@ -39,7 +39,7 @@ FROM ghcr.io/renderinc/heroku-app-runner:${HEROKU_STACK} AS runner
 # the image that we deploy to Render is smaller and, therefore, can start up
 # faster.
 COPY --from=builder --chown=1000:1000 /render /render/
-COPY --from=builder --chown=1000:1000 /app/ /app/
+COPY --from=builder --chown=1000:1000 /app/backend/ /app/backend/
 
 # Here we're switching to a non-root user in the container to remove some categories
 # of container-escape attack.
